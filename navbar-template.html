@@ -1,0 +1,70 @@
+<!-- ApexMine Standard Navigation Structure -->
+<!-- SIDEBAR -->
+<aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+ <div class="flex items-center gap-2 mb-8">
+  <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center"><i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i></div>
+  <span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+ </div>
+ <nav class="flex-1 space-y-1" aria-label="Main navigation">
+  <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+   <i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard
+  </a>
+  <a href="tasks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+   <i data-lucide="axe" style="width:18px;height:18px;"></i>Tasks
+  </a>
+  <a href="wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+   <i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet
+  </a>
+  <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+   <i data-lucide="user" style="width:18px;height:18px;"></i>Profile
+  </a>
+  <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+   <i data-lucide="settings" style="width:18px;height:18px;"></i>Settings
+  </a>
+ </nav>
+ <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center justify-between">
+  <div class="flex items-center gap-3 flex-1">
+   <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white" id="navbar-user-initials">TW</div>
+   <div class="overflow-hidden flex-1">
+    <p class="text-sm font-medium text-white truncate" id="navbar-user-name">Terraim Wilson</p>
+    <p class="text-xs text-gray-500 truncate" id="navbar-user-email">terraim@mail.co...</p>
+   </div>
+  </div>
+  <button onclick="logout()" class="text-gray-400 hover:text-red-400 transition-colors p-1" title="Logout" aria-label="Logout">
+   <i data-lucide="log-out" style="width:18px;height:18px;"></i>
+  </button>
+ </div>
+</aside>
+<!-- TOP HEADER -->
+<header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+ <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300" onclick="toggleSidebar()"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+  <div class="hidden lg:flex items-center gap-1">
+   <a href="dashboard.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Dashboard</a>
+   <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Tasks</a>
+   <a href="wallet.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Wallet</a>
+   <a href="profile.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Profile</a>
+   <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+  </div>
+ </div>
+ <div class="relative">
+  <button id="notificationBell" class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5" aria-label="Notifications" onclick="toggleNotificationDropdown()">
+   <i data-lucide="bell" style="width:20px;height:20px;"></i>
+   <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+  </button>
+  <!-- Notification Dropdown -->
+  <div id="notificationDropdown" class="notification-dropdown hidden absolute right-0 mt-2 w-80 bg-[#111827] border border-[#1e293b] rounded-lg shadow-lg z-50">
+   <div class="p-4 border-b border-[#1e293b] flex items-center justify-between">
+    <h3 class="text-sm font-semibold text-white">Notifications</h3>
+    <button onclick="closeNotificationDropdown()" class="text-gray-400 hover:text-white">
+     <i data-lucide="x" style="width:16px;height:16px;"></i>
+    </button>
+   </div>
+   <div id="notificationsList" class="max-h-96 overflow-y-auto">
+    <!-- Notifications will be populated here -->
+    <div class="p-4 text-center text-gray-400 text-sm">
+     <p>No notifications yet</p>
+    </div>
+   </div>
+  </div>
+ </div>
+</header>

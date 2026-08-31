@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine Access</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'DM Sans',sans-serif}
+    :root{--lime:#a3e635;--cyan:#22d3ee;--yellow:#facc15;--navy:#0a0f1a;--card:#111827;--border:#1e293b}
+    .glow-card{box-shadow:0 0 40px rgba(163,230,53,0.05),0 0 80px rgba(34,211,238,0.03)}
+    .tab-active{border-bottom:2px solid var(--lime);color:#fff}
+    .tab-inactive{border-bottom:2px solid transparent;color:#9ca3af}
+    .btn-loading{opacity:0.7;pointer-events:none}
+    input:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 2px rgba(163,230,53,0.15)}
+    .fade-in{animation:fadeIn .3s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    
+    /* Fluid breathing motion and deformations */
+    @keyframes fluidBreathe{0%{r:6;opacity:1}25%{r:7.5;opacity:0.95}50%{r:6.2;opacity:0.9}75%{r:7.8;opacity:0.95}100%{r:6;opacity:1}}
+    @keyframes glowBreathe{0%,100%{r:12;opacity:0.35;stroke-width:1;filter:blur(0.8px)}25%{r:15;opacity:0.65;stroke-width:1.4;filter:blur(1px)}50%{r:17;opacity:0.85;stroke-width:1.9;filter:blur(1.2px)}75%{r:15;opacity:0.65;stroke-width:1.4;filter:blur(1px)}}
+    @keyframes orbitWave1{0%{transform:rotate(0deg) scale(1,1);d:path('M 150 50 Q 160 65 150 80 Q 140 65 150 50');opacity:0.35}25%{transform:rotate(0deg) scale(1.02,0.98);d:path('M 150 50 Q 165 70 150 80 Q 135 70 150 50');opacity:0.45}50%{transform:rotate(90deg) scale(1,1.02);d:path('M 150 50 Q 155 65 150 80 Q 145 65 150 50');opacity:0.5}75%{transform:rotate(90deg) scale(0.98,1.02);d:path('M 150 50 Q 145 70 150 80 Q 155 70 150 50');opacity:0.42}100%{transform:rotate(360deg) scale(1,1);d:path('M 150 50 Q 160 65 150 80 Q 140 65 150 50');opacity:0.35}}
+    @keyframes orbitWave2{0%{transform:rotate(0deg) scale(1,1);opacity:0.4}20%{transform:rotate(-30deg) scale(1.01,0.99);opacity:0.48}40%{transform:rotate(-90deg) scale(1,1.02);opacity:0.52}60%{transform:rotate(-180deg) scale(0.99,1.01);opacity:0.45}80%{transform:rotate(-300deg) scale(1.02,0.99);opacity:0.42}100%{transform:rotate(-360deg) scale(1,1);opacity:0.4}}
+    @keyframes orbitWave3{0%{transform:rotate(0deg) scale(1,1);opacity:0.5}25%{transform:rotate(40deg) scale(1.02,0.98);opacity:0.58}50%{transform:rotate(180deg) scale(1,1.02);opacity:0.62}75%{transform:rotate(280deg) scale(0.98,1.01);opacity:0.55}100%{transform:rotate(360deg) scale(1,1);opacity:0.5}}
+    @keyframes energyTrail1{0%{stroke-dashoffset:100;opacity:0.3;filter:blur(0.5px)}50%{stroke-dashoffset:50;opacity:0.5;filter:blur(1px)}100%{stroke-dashoffset:0;opacity:0.2;filter:blur(0.5px)}}
+    @keyframes energyTrail2{0%{stroke-dashoffset:100;opacity:0.25;filter:blur(0.5px)}50%{stroke-dashoffset:50;opacity:0.45;filter:blur(1px)}100%{stroke-dashoffset:0;opacity:0.15;filter:blur(0.5px)}}
+    @keyframes energyTrail3{0%{stroke-dashoffset:100;opacity:0.28;filter:blur(0.5px)}50%{stroke-dashoffset:50;opacity:0.48;filter:blur(1px)}100%{stroke-dashoffset:0;opacity:0.18;filter:blur(0.5px)}}
+    @keyframes fluidShimmer{0%{opacity:0.15}50%{opacity:0.35}100%{opacity:0.15}}
+    
+    .atom-diagram{transition:opacity 0.3s ease}
+    .atom-diagram.active-state svg circle[data-nucleus="true"]{animation:fluidBreathe 2.2s cubic-bezier(0.4,0.0,0.6,1.0) infinite}
+    .atom-diagram.active-state svg circle[data-glow="true"]{animation:glowBreathe 2.8s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state svg circle[data-orbit="outer"]{animation:orbitWave1 11s cubic-bezier(0.34,1.56,0.64,0.08) infinite}
+    .atom-diagram.active-state svg circle[data-orbit="middle"]{animation:orbitWave2 8.5s cubic-bezier(0.42,0,0.58,1) infinite}
+    .atom-diagram.active-state svg circle[data-orbit="inner"]{animation:orbitWave3 7.2s cubic-bezier(0.37,0,0.63,1) infinite}
+    .atom-diagram.active-state svg path[data-energy]{animation:energyTrail1 4.5s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state svg path[data-energy="2"]{animation:energyTrail2 5s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state svg path[data-energy="3"]{animation:energyTrail3 5.5s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state svg circle[data-shimmer="true"]{animation:fluidShimmer 3s ease-in-out infinite;mix-blend-mode:screen}
+    
+    .atom-diagram:hover,.atom-diagram:focus-within{--flow-intensity:1.4}
+    .atom-diagram.active-state:hover svg circle[data-nucleus="true"],
+    .atom-diagram.active-state:focus-within svg circle[data-nucleus="true"]{animation:fluidBreathe 1.5s cubic-bezier(0.4,0.0,0.6,1.0) infinite}
+    .atom-diagram.active-state:hover svg circle[data-glow="true"],
+    .atom-diagram.active-state:focus-within svg circle[data-glow="true"]{animation:glowBreathe 1.8s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state:hover svg circle[data-orbit="outer"],
+    .atom-diagram.active-state:focus-within svg circle[data-orbit="outer"]{animation:orbitWave1 7s cubic-bezier(0.34,1.56,0.64,0.08) infinite}
+    .atom-diagram.active-state:hover svg circle[data-orbit="middle"],
+    .atom-diagram.active-state:focus-within svg circle[data-orbit="middle"]{animation:orbitWave2 5.5s cubic-bezier(0.42,0,0.58,1) infinite}
+    .atom-diagram.active-state:hover svg circle[data-orbit="inner"],
+    .atom-diagram.active-state:focus-within svg circle[data-orbit="inner"]{animation:orbitWave3 4.5s cubic-bezier(0.37,0,0.63,1) infinite}
+    .atom-diagram.active-state:hover svg path[data-energy],
+    .atom-diagram.active-state:focus-within svg path[data-energy]{animation:energyTrail1 2.8s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state:hover svg path[data-energy="2"],
+    .atom-diagram.active-state:focus-within svg path[data-energy="2"]{animation:energyTrail2 3.2s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state:hover svg path[data-energy="3"],
+    .atom-diagram.active-state:focus-within svg path[data-energy="3"]{animation:energyTrail3 3.6s cubic-bezier(0.25,0.46,0.45,0.94) infinite}
+    .atom-diagram.active-state:hover svg circle[data-shimmer="true"],
+    .atom-diagram.active-state:focus-within svg circle[data-shimmer="true"]{animation:fluidShimmer 1.5s ease-in-out infinite}
+    
+    @media (prefers-reduced-motion:reduce){
+      svg circle[data-orbit="outer"],
+      svg circle[data-orbit="middle"],
+      svg circle[data-orbit="inner"],
+      svg circle[data-nucleus="true"],
+      svg circle[data-glow="true"],
+      svg circle[data-shimmer="true"],
+      svg path[data-energy]{animation:none!important}
+      svg circle[data-glow="true"]{r:16;opacity:0.8;stroke-width:1.8}
+      svg circle[data-nucleus="true"]{r:6.5}
+      svg circle[data-shimmer="true"]{r:20;opacity:0.2;fill:none;stroke:#a3e635;stroke-width:2}
+    }
+  </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen flex items-center justify-center p-4" style="background: radial-gradient(rgb(13, 21, 37), rgb(10, 15, 26));">
+  <div class="w-full max-w-5xl flex flex-col lg:flex-row gap-0 lg:gap-0">
+   <!-- Side panel desktop -->
+   <aside class="hidden lg:flex flex-col justify-center items-center flex-1 rounded-l-2xl border border-[#1e293b] bg-[#0d1525] p-10 relative overflow-hidden">
+    <div class="atom-diagram active-state w-56 h-56 mb-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#a3e635]" tabindex="0" role="img" aria-label="Animated fluid atom diagram with breathing motion">
+     <svg viewBox="0 0 300 300" class="w-full h-full" aria-hidden="true">
+      <!-- Fluid shimmer overlay for breathing glow --> <circle cx="150" cy="150" r="12" fill="none" stroke="#a3e635" stroke-width="1" data-shimmer="true" opacity="0.2"></circle> <!-- Expanding glow halo --> <circle cx="150" cy="150" r="12" fill="none" stroke="#a3e635" stroke-width="1.2" data-glow="true"></circle> <!-- Energy trails flowing around orbits --> <path d="M 150 50 Q 160 65 150 80 Q 140 65 150 50" fill="none" stroke="#a3e635" stroke-width="1.5" opacity="0.4" data-energy="true" stroke-dasharray="40 20"></path> <path d="M 230 150 Q 215 160 200 150 Q 215 140 230 150" fill="none" stroke="#22d3ee" stroke-width="1.5" opacity="0.35" data-energy="2" stroke-dasharray="40 20"></path> <path d="M 150 250 Q 140 235 150 220 Q 160 235 150 250" fill="none" stroke="#facc15" stroke-width="1.5" opacity="0.3" data-energy="3" stroke-dasharray="40 20"></path> <!-- Orbital rings with wave deformation --> <circle cx="150" cy="150" r="100" fill="none" stroke="#a3e635" stroke-width="0.8" opacity="0.3" data-orbit="outer"></circle> <circle cx="150" cy="150" r="65" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.4" data-orbit="middle"></circle> <circle cx="150" cy="150" r="30" fill="none" stroke="#facc15" stroke-width="1.5" opacity="0.5" data-orbit="inner"></circle> <!-- Nucleus with fluid breathing motion --> <circle cx="150" cy="150" r="5" fill="#facc15" data-nucleus="true"></circle> <!-- Spokes and nodes --> <line x1="150" y1="50" x2="150" y2="85" stroke="#a3e635" stroke-width="1" opacity="0.5"></line> <line x1="150" y1="215" x2="150" y2="250" stroke="#a3e635" stroke-width="1" opacity="0.5"></line> <line x1="50" y1="150" x2="85" y2="150" stroke="#22d3ee" stroke-width="1" opacity="0.5"></line> <line x1="215" y1="150" x2="250" y2="150" stroke="#22d3ee" stroke-width="1" opacity="0.5"></line> <!-- Outer nodes --> <circle cx="150" cy="50" r="4" fill="#a3e635" opacity="0.7"></circle> <circle cx="150" cy="250" r="4" fill="#a3e635" opacity="0.7"></circle> <circle cx="50" cy="150" r="4" fill="#22d3ee" opacity="0.7"></circle> <circle cx="250" cy="150" r="4" fill="#22d3ee" opacity="0.7"></circle> <!-- Center frame --> <rect x="120" y="120" width="60" height="60" rx="8" fill="none" stroke="#facc15" stroke-width="1" opacity="0.3" transform="rotate(45 150 150)"></rect>
+     </svg>
+    </div>
+    <h2 data-template-id="side-headline" class="canva-text text-center font-bold text-xl text-white mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 22px;">Mine smarter. Track progress. Grow with clarity.</h2>
+    <p data-template-id="side-subtext" class="canva-text text-center text-sm text-gray-400" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Simple, secure access to your mining dashboard.</p>
+   </aside><!-- Main card -->
+   <div class="flex-1 lg:max-w-md w-full bg-[#111827] border border-[#1e293b] rounded-2xl lg:rounded-l-none lg:rounded-r-2xl p-6 sm:p-8 glow-card flex flex-col">
+    <!-- Logo -->
+    <div class="flex items-center justify-center gap-2 mb-6">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+      <i data-lucide="hexagon" style="width:18px;height:18px" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="auth-brand" class="canva-text font-bold text-lg text-white" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">ApexMine</span>
+    </div><!-- Tabs -->
+    <div class="flex border-b border-[#1e293b] mb-6" role="tablist">
+     <button id="tab-signin" role="tab" aria-selected="true" class="flex-1 pb-3 text-sm font-semibold tab-active transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded-t">Sign in</button> <button id="tab-signup" role="tab" aria-selected="false" class="flex-1 pb-3 text-sm font-semibold tab-inactive transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded-t">Sign up</button>
+    </div><!-- Sign in form -->
+    <div id="panel-signin" class="fade-in">
+     <form id="signin-form" class="space-y-4" novalidate="">
+      <div>
+       <label for="signin-email" class="text-xs text-gray-400 block mb-1">Email address</label> <input id="signin-email" type="email" autocomplete="email" required="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500" placeholder="you@example.com">
+       <p id="signin-err" class="text-xs text-red-400 mt-1 hidden"></p>
+      </div><button id="signin-btn" type="submit" data-template-id="signin-button" class="canva-button w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-yellow-400" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 16px;">Continue with email</button>
+     </form>
+     <div class="flex items-center gap-3 my-5">
+      <div class="flex-1 h-px bg-[#1e293b]"></div><span class="text-xs text-gray-500">or</span>
+      <div class="flex-1 h-px bg-[#1e293b]"></div>
+     </div>
+     <div class="space-y-2">
+      <button id="google-btn" type="button" class="w-full py-2.5 rounded-lg border border-[#1e293b] text-sm text-gray-300 font-medium hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Continue with Google</button> <button id="apple-btn" type="button" class="w-full py-2.5 rounded-lg border border-[#1e293b] text-sm text-gray-300 font-medium hover:border-gray-500 transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Continue with Apple</button>
+     </div>
+     <p id="social-feedback" class="text-xs text-cyan-400 text-center mt-3 hidden fade-in"></p>
+    </div><!-- Sign in success -->
+    <div id="signin-success" class="hidden fade-in text-center py-6">
+     <div class="w-12 h-12 rounded-full bg-lime-500/10 flex items-center justify-center mx-auto mb-4"><i data-lucide="mail-check" style="width:24px;height:24px" class="text-[#a3e635]"></i>
+     </div>
+     <p data-template-id="signin-success-msg" class="canva-text font-semibold text-white mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 18px;">Access link sent!</p>
+     <p class="text-sm text-gray-400 mb-4">Check your email for a secure access link.</p><button id="signin-reset" type="button" class="text-sm text-[#22d3ee] hover:underline focus:outline-none focus:ring-2 focus:ring-[#22d3ee] rounded">Use a different email</button>
+    </div><!-- Sign up form -->
+    <div id="panel-signup" class="hidden fade-in">
+     <form id="signup-form" class="space-y-4" novalidate="">
+      <div>
+       <label for="signup-name" class="text-xs text-gray-400 block mb-1">Full name</label> <input id="signup-name" type="text" autocomplete="name" required="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500" placeholder="Your full name">
+      </div>
+      <div>
+       <label for="signup-email" class="text-xs text-gray-400 block mb-1">Email address</label> <input id="signup-email" type="email" autocomplete="email" required="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-3 py-2.5 text-sm text-white placeholder-gray-500" placeholder="you@example.com">
+      </div>
+      <div class="flex items-start gap-2">
+       <input id="signup-terms" type="checkbox" required="" class="mt-1 w-4 h-4 rounded border-[#1e293b] bg-[#0a0f1a] text-[#a3e635] focus:ring-[#a3e635]"> <label for="signup-terms" class="text-xs text-gray-400">I agree to the Terms and Conditions</label>
+      </div>
+      <p id="signup-err" class="text-xs text-red-400 hidden"></p><button id="signup-btn" type="submit" data-template-id="signup-button" class="canva-button w-full py-2.5 rounded-lg font-semibold text-sm transition-opacity focus:outline-none focus:ring-2 focus:ring-yellow-400" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 16px;">Create account</button>
+     </form>
+    </div><!-- Sign up success -->
+    <div id="signup-success" class="hidden fade-in text-center py-6">
+     <div class="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center mx-auto mb-4"><i data-lucide="check-circle" style="width:24px;height:24px" class="text-[#22d3ee]"></i>
+     </div>
+     <p data-template-id="signup-success-msg" class="canva-text font-semibold text-white mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 18px;">Account created!</p>
+     <p class="text-sm text-gray-400 mb-4">Your account access link is ready.</p><button id="goto-signin" type="button" class="text-sm text-[#a3e635] hover:underline focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded">Go to Sign in</button>
+    </div><!-- Reassurance -->
+    <div class="mt-auto pt-6 flex flex-wrap justify-center gap-4 text-xs text-gray-500">
+     <span class="flex items-center gap-1"><i data-lucide="shield" style="width:12px;height:12px" class="text-[#a3e635]"></i>Secure access</span> <span class="flex items-center gap-1"><i data-lucide="sliders" style="width:12px;height:12px" class="text-[#22d3ee]"></i>Clear account controls</span> <span class="flex items-center gap-1"><i data-lucide="monitor" style="width:12px;height:12px" class="text-[#facc15]"></i>Demo environment</span>
+    </div>
+    <p data-template-id="footer-note" class="canva-text text-center mt-4 text-xs" style="color: rgb(75, 85, 99); font-weight: 400; font-style: normal; font-size: 16px;">ApexMine access prototype.</p>
+   </div>
+  </div>
+  <script src="/_sdk/fef09cb5f5b2424b.editing_sdk.js" integrity="sha512-PbmCvZWt+xecnQll4ofK5HTtTS+pGwwY1xn9+p49qHgEHml+uvyc0o1f2Eltkd4t324iwgnf7acUjfnKHkik1w=="></script>
+  <script>
+    lucide.createIcons();
+
+    const tabSignin = document.getElementById('tab-signin');
+    const tabSignup = document.getElementById('tab-signup');
+    const panelSignin = document.getElementById('panel-signin');
+    const panelSignup = document.getElementById('panel-signup');
+    const signinSuccess = document.getElementById('signin-success');
+    const signupSuccess = document.getElementById('signup-success');
+
+    function switchTab(tab) {
+      signinSuccess.classList.add('hidden');
+      signupSuccess.classList.add('hidden');
+      document.getElementById('social-feedback').classList.add('hidden');
+      if (tab === 'signin') {
+        tabSignin.classList.replace('tab-inactive','tab-active'); tabSignin.setAttribute('aria-selected','true');
+        tabSignup.classList.replace('tab-active','tab-inactive'); tabSignup.setAttribute('aria-selected','false');
+        panelSignin.classList.remove('hidden'); panelSignup.classList.add('hidden');
+      } else {
+        tabSignup.classList.replace('tab-inactive','tab-active'); tabSignup.setAttribute('aria-selected','true');
+        tabSignin.classList.replace('tab-active','tab-inactive'); tabSignin.setAttribute('aria-selected','false');
+        panelSignup.classList.remove('hidden'); panelSignin.classList.add('hidden');
+      }
+    }
+    tabSignin.addEventListener('click', () => switchTab('signin'));
+    tabSignup.addEventListener('click', () => switchTab('signup'));
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Sign in
+    document.getElementById('signin-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const email = document.getElementById('signin-email').value.trim();
+      const err = document.getElementById('signin-err');
+      if (!email || !emailRe.test(email)) { err.textContent = !email ? 'Email is required.' : 'Enter a valid email.'; err.classList.remove('hidden'); return; }
+      err.classList.add('hidden');
+      const btn = document.getElementById('signin-btn');
+      btn.classList.add('btn-loading'); btn.textContent = 'Sending…';
+      setTimeout(() => {
+        btn.classList.remove('btn-loading'); btn.textContent = 'Continue with email';
+        panelSignin.classList.add('hidden');
+        signinSuccess.classList.remove('hidden');
+      }, 1200);
+    });
+
+    document.getElementById('signin-reset').addEventListener('click', () => {
+      document.getElementById('signin-email').value = '';
+      signinSuccess.classList.add('hidden');
+      panelSignin.classList.remove('hidden');
+    });
+
+    // Sign up
+    document.getElementById('signup-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const terms = document.getElementById('signup-terms').checked;
+      const err = document.getElementById('signup-err');
+      if (!name) { err.textContent = 'Full name is required.'; err.classList.remove('hidden'); return; }
+      if (!email || !emailRe.test(email)) { err.textContent = !email ? 'Email is required.' : 'Enter a valid email.'; err.classList.remove('hidden'); return; }
+      if (!terms) { err.textContent = 'You must accept the terms.'; err.classList.remove('hidden'); return; }
+      err.classList.add('hidden');
+      const btn = document.getElementById('signup-btn');
+      btn.classList.add('btn-loading'); btn.textContent = 'Creating…';
+      setTimeout(() => {
+        btn.classList.remove('btn-loading'); btn.textContent = 'Create account';
+        panelSignup.classList.add('hidden');
+        signupSuccess.classList.remove('hidden');
+      }, 1200);
+    });
+
+    document.getElementById('goto-signin').addEventListener('click', () => switchTab('signin'));
+
+    // Social demo
+    ['google-btn','apple-btn'].forEach(id => {
+      document.getElementById(id).addEventListener('click', () => {
+        const fb = document.getElementById('social-feedback');
+        fb.textContent = 'Demo action — social sign-in is not connected.';
+        fb.classList.remove('hidden');
+        setTimeout(() => fb.classList.add('hidden'), 3000);
+      });
+    });
+  </script>
+ 
+</body></html>

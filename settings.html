@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine - Settings</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);">
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden toast-enter">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" class="text-emerald-400" style="width:18px;height:18px;"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- Modals -->
+  <div id="modal-overlay" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div id="modal-content" class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"></div>
+  </div>
+  <div class="flex min-h-screen"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+    <div class="flex items-center gap-2 mb-8">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+      <i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+    </div>
+    <nav class="flex-1 space-y-1" aria-label="Main navigation"><a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard</a> <a href="tasks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="axe" style="width:18px;height:18px;"></i>Tasks
+    </a> <a href="wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet</a> <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="user" style="width:18px;height:18px;"></i>Profile</a> <a href="settings.html" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium"><i data-lucide="settings" style="width:18px;height:18px;"></i>Settings</a>
+    </nav>
+    <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center gap-3">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white" data-user-initials>
+      TW
+     </div>
+     <div class="overflow-hidden">
+      <p class="text-sm font-medium text-white truncate" data-user-name>Terraim Wilson</p>
+      <p class="text-xs text-gray-500 truncate" data-user-email>ter••••@example.com</p>
+     </div>
+    </div>
+   </aside>
+   <div class="flex-1 flex flex-col min-w-0"><!-- Header -->
+    <header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+     <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded" onclick="toggleSidebar()" aria-label="Toggle menu"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+      <div class="lg:hidden flex items-center gap-2">
+       <div class="w-7 h-7 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+        <i data-lucide="hexagon" style="width:14px;height:14px;" class="text-[#0a0f1a]"></i>
+       </div><span class="font-bold text-sm text-white">ApexMine</span>
+      </div>
+      <div class="hidden lg:flex items-center gap-1"><a href="dashboard.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Dashboard</a> <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Tasks</a> <a href="wallet.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Wallet</a> <a href="profile.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Profile</a> <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+      </div>
+     </div><button class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-label="Notifications"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span></button>
+    </header>
+    <main class="flex-1 overflow-y-auto p-4 lg:p-8 pb-24">
+     <div class="max-w-4xl mx-auto space-y-6"><!-- Heading -->
+      <div>
+       <h1 data-template-id="settings-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 30px;">Settings</h1>
+       <p data-template-id="settings-subtitle" class="canva-text mt-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Configure your account, security, notifications, and display preferences.</p>
+      </div><!-- Tab nav -->
+      <div class="settings-tab-scroll flex gap-1 overflow-x-auto border border-[#1e293b] rounded-xl p-1.5 bg-[#111827]"><button class="tab-btn tab-active px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-[#a3e635]" data-tab="account">Account</button> <button class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-400 whitespace-nowrap hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]" data-tab="security">Security</button> <button class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-400 whitespace-nowrap hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]" data-tab="notifications">Notifications</button> <button class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-400 whitespace-nowrap hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]" data-tab="appearance">Appearance</button> <button class="tab-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-400 whitespace-nowrap hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]" data-tab="preferences">Preferences</button>
+      </div><!-- Account Panel -->
+      <section id="panel-account" class="panel space-y-4">
+       <div data-template-id="account-card" class="canva-card border border-[#1e293b] rounded-xl p-6 space-y-5" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="account-heading" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Account</h2><!-- Account ID -->
+        <div class="flex items-center justify-between flex-wrap gap-2">
+         <div>
+          <p class="text-xs text-gray-500">Account ID</p>
+          <p class="text-sm text-white font-mono">AMX-••••-4821</p>
+         </div><button onclick="copyId()" class="px-3 py-1.5 text-xs rounded-lg border border-[#1e293b] text-gray-300 hover:text-white hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635]"><i data-lucide="copy" style="width:14px;height:14px;" class="inline mr-1"></i>Copy</button>
+        </div><!-- Email -->
+        <div class="flex items-center justify-between flex-wrap gap-2">
+         <div>
+          <p class="text-xs text-gray-500">Email</p>
+          <p class="text-sm text-white">ter••••@example.com</p>
+         </div><span class="px-2 py-0.5 text-xs rounded-full bg-emerald-900 text-emerald-400 border border-emerald-700">Verified</span>
+        </div><!-- Language -->
+        <div><label for="lang-select" class="text-xs text-gray-500 block mb-1">Preferred language</label> <select id="lang-select" onchange="markDirty()" class="w-full sm:w-48 bg-[#0d1525] border border-[#1e293b] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#a3e635]"> <option>English</option><option>French</option><option>Spanish</option> </select>
+        </div><!-- Timezone -->
+        <div><label for="tz-select" class="text-xs text-gray-500 block mb-1">Timezone</label> <select id="tz-select" onchange="markDirty()" class="w-full sm:w-48 bg-[#0d1525] border border-[#1e293b] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#a3e635]"> <option>UTC</option><option>UTC+1</option><option>UTC-5</option><option>UTC+8</option> </select>
+        </div><button onclick="saveSection('Account')" class="px-5 py-2.5 rounded-lg bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-400">Save changes</button>
+       </div>
+      </section><!-- Security Panel -->
+      <section id="panel-security" class="panel hidden space-y-4">
+       <div data-template-id="security-card" class="canva-card border border-[#1e293b] rounded-xl p-6 space-y-5" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="security-heading" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Security</h2><!-- Password -->
+        <div class="flex items-center justify-between flex-wrap gap-3">
+         <div>
+          <p class="text-sm text-white">Password</p>
+          <p class="text-xs text-gray-500">Last updated 30 days ago</p>
+         </div><button onclick="showPasswordModal()" class="px-3 py-1.5 text-xs rounded-lg border border-[#1e293b] text-gray-300 hover:text-white hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Change password</button>
+        </div><!-- 2FA -->
+        <div class="flex items-center justify-between flex-wrap gap-3">
+         <div>
+          <p class="text-sm text-white">Two-factor authentication</p>
+          <p class="text-xs text-yellow-400">Recommended</p>
+         </div><button onclick="show2FAModal()" class="px-3 py-1.5 text-xs rounded-lg border border-[#a3e635] text-[#a3e635] hover:bg-[#a3e635]/10 focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Enable</button>
+        </div><!-- Login alerts -->
+        <div class="flex items-center justify-between">
+         <p class="text-sm text-white">Login alerts</p>
+         <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div><!-- Withdrawal protection -->
+        <div class="flex items-center justify-between">
+         <p class="text-sm text-white">Withdrawal protection</p>
+         <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div><!-- Sessions -->
+        <div class="flex items-center justify-between flex-wrap gap-3">
+         <p class="text-sm text-white">Active sessions</p><button onclick="showToast('Sessions management opened')" class="px-3 py-1.5 text-xs rounded-lg border border-[#1e293b] text-gray-300 hover:text-white hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Manage sessions</button>
+        </div>
+       </div>
+      </section><!-- Notifications Panel -->
+      <section id="panel-notifications" class="panel hidden space-y-4">
+       <div data-template-id="notif-card" class="canva-card border border-[#1e293b] rounded-xl p-6 space-y-4" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="notif-heading" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Notifications</h2>
+        <div class="space-y-3" id="notif-toggles">
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Claim successful</span>
+          <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Earnings updates</span>
+          <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Withdrawal updates</span>
+          <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Security alerts</span>
+          <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Product announcements</span>
+          <div class="toggle-track" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="false" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+         <div class="flex items-center justify-between">
+          <span class="text-sm text-white">Marketing emails</span>
+          <div class="toggle-track" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="false" tabindex="0">
+           <div class="toggle-thumb"></div>
+          </div>
+         </div>
+        </div>
+        <div class="pt-2">
+         <p class="text-xs text-gray-500 mb-2">Delivery method</p>
+         <div class="flex gap-2"><label class="flex items-center gap-2 text-sm text-gray-300"><input type="checkbox" checked="" class="accent-[#a3e635] rounded" onchange="markDirty()"> In-app</label> <label class="flex items-center gap-2 text-sm text-gray-300"><input type="checkbox" checked="" class="accent-[#a3e635] rounded" onchange="markDirty()"> Email</label>
+         </div>
+        </div>
+        <div class="flex gap-3 pt-2"><button onclick="resetNotifDefaults()" class="px-4 py-2 text-xs rounded-lg border border-[#1e293b] text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Reset defaults</button> <button onclick="saveSection('Notification settings')" class="px-4 py-2 text-xs rounded-lg bg-[#facc15] text-[#111827] font-bold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-400">Save notification settings</button>
+        </div>
+       </div>
+      </section><!-- Appearance Panel -->
+      <section id="panel-appearance" class="panel hidden space-y-4">
+       <div data-template-id="appearance-card" class="canva-card border border-[#1e293b] rounded-xl p-6 space-y-5" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="appearance-heading" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Appearance</h2>
+        <div class="flex items-center justify-between"><span class="text-sm text-white">Dark mode</span>
+         <div class="toggle-track on" role="switch" aria-checked="true" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div>
+        <div>
+         <p class="text-xs text-gray-500 mb-2">Density</p>
+         <div class="flex gap-2"><button id="density-comfortable" onclick="setDensity('comfortable')" class="px-3 py-1.5 text-xs rounded-lg border border-[#a3e635] text-[#a3e635] focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Comfortable</button> <button id="density-compact" onclick="setDensity('compact')" class="px-3 py-1.5 text-xs rounded-lg border border-[#1e293b] text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Compact</button>
+         </div>
+        </div>
+        <div class="flex items-center justify-between"><span class="text-sm text-white">Reduced motion</span>
+         <div class="toggle-track" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="false" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div>
+        <div>
+         <p class="text-xs text-gray-500 mb-2">Accent color</p>
+         <div class="flex gap-3"><button class="swatch active" style="background:#facc15" onclick="setAccent('#facc15',this)" aria-label="Yellow accent" title="ApexMine Yellow"></button> <button class="swatch" style="background:#a3e635" onclick="setAccent('#a3e635',this)" aria-label="Green accent" title="Neon Green"></button> <button class="swatch" style="background:#22d3ee" onclick="setAccent('#22d3ee',this)" aria-label="Cyan accent" title="Cyan"></button>
+         </div>
+        </div>
+       </div>
+      </section><!-- Preferences Panel -->
+      <section id="panel-preferences" class="panel hidden space-y-4">
+       <div data-template-id="prefs-card" class="canva-card border border-[#1e293b] rounded-xl p-6 space-y-4" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="prefs-heading" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Privacy &amp; Preferences</h2>
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-white">Share analytics</span>
+         <div class="toggle-track" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="false" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div>
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-white">Personalized tips</span>
+         <div class="toggle-track on" onclick="this.classList.toggle('on');markDirty()" role="switch" aria-checked="true" tabindex="0">
+          <div class="toggle-thumb"></div>
+         </div>
+        </div>
+        <div><label for="pref-lang" class="text-xs text-gray-500 block mb-1">Language</label> <select id="pref-lang" onchange="markDirty()" class="w-full sm:w-48 bg-[#0d1525] border border-[#1e293b] rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#a3e635]"><option>English</option><option>French</option><option>Spanish</option></select>
+        </div><button onclick="showClearDataModal()" class="px-4 py-2 text-xs rounded-lg border border-red-800 text-red-400 hover:bg-red-900/30 focus:outline-none focus:ring-2 focus:ring-red-500">Clear local demo data</button>
+       </div><!-- Danger Zone -->
+       <div data-template-id="danger-card" class="canva-card border border-red-900/50 rounded-xl p-6 space-y-4" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="danger-heading" class="canva-text font-bold" style="color: rgb(248, 113, 113); font-weight: 700; font-style: normal; font-size: 23px;">Danger zone</h2>
+        <div class="flex flex-wrap gap-3"><button onclick="showSignOutModal()" class="px-4 py-2 text-xs rounded-lg border border-[#1e293b] text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Sign out</button> <button onclick="showDeactivateModal()" class="px-4 py-2 text-xs rounded-lg border border-red-800 text-red-400 hover:bg-red-900/30 focus:outline-none focus:ring-2 focus:ring-red-500">Deactivate account</button>
+        </div>
+       </div>
+      </section>
+     </div>
+    </main><!-- Sticky save bar -->
+    <div id="save-bar" class="hidden fixed bottom-0 left-0 right-0 bg-[#0d1525] border-t border-[#1e293b] px-6 py-3 flex items-center justify-end gap-3 z-30"><span class="text-xs text-yellow-400 mr-auto"><i data-lucide="alert-circle" style="width:14px;height:14px;" class="inline mr-1"></i>Unsaved changes</span> <button onclick="discardChanges()" class="px-4 py-2 text-sm rounded-lg border border-[#1e293b] text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Discard</button> <button onclick="saveAll()" class="px-5 py-2 text-sm rounded-lg bg-[#facc15] text-[#111827] font-bold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-400">Save changes</button>
+    </div>
+   </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="shared-navbar.js"></script>
+ 
+</body></html>

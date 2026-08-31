@@ -1,0 +1,253 @@
+﻿<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine Profile</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);"><!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden toast-enter">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" class="text-emerald-400" style="width:18px;height:18px;"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- 2FA Modal -->
+  <div id="twofa-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-labelledby="twofa-title" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"><button onclick="closeModal('twofa-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="twofa-title" class="text-xl font-bold text-white mb-3">Enable Two-Factor Authentication</h2>
+    <p class="text-sm text-gray-400 mb-5">Add an extra layer of security to your account. You'll need an authenticator app to generate verification codes.</p>
+    <div class="flex gap-3">
+     <button onclick="closeModal('twofa-modal')" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 text-sm font-medium">Cancel</button><button onclick="closeModal('twofa-modal');showToast('Two-factor authentication enabled')" class="flex-1 py-2.5 rounded-lg bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90">Confirm enable</button>
+    </div>
+   </div>
+  </div><!-- Password Modal -->
+  <div id="password-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-labelledby="pw-title" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"><button onclick="closeModal('password-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="pw-title" class="text-xl font-bold text-white mb-4">Change Password</h2>
+    <form id="pw-form" class="space-y-3" onsubmit="return false;">
+     <div>
+      <label for="pw-current" class="text-sm text-gray-400 block mb-1">Current password</label><input id="pw-current" type="password" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-[#a3e635]">
+     </div>
+     <div>
+      <label for="pw-new" class="text-sm text-gray-400 block mb-1">New password</label><input id="pw-new" type="password" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-[#a3e635]">
+     </div>
+     <div>
+      <label for="pw-confirm" class="text-sm text-gray-400 block mb-1">Confirm new password</label><input id="pw-confirm" type="password" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-[#a3e635]">
+     </div>
+     <p id="pw-error" class="text-red-400 text-xs hidden"></p>
+     <div class="flex gap-3 pt-2">
+      <button type="button" onclick="closeModal('password-modal')" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 text-sm font-medium">Cancel</button><button type="button" onclick="submitPassword()" class="flex-1 py-2.5 rounded-lg bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90">Update password</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Sign Out Modal -->
+  <div id="signout-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-sm w-full p-6 relative"><button onclick="closeModal('signout-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="text-lg font-bold text-white mb-2">Sign out?</h2>
+    <p class="text-sm text-gray-400 mb-5">Are you sure you want to sign out of your account?</p>
+    <div class="flex gap-3">
+    <button onclick="closeModal('signout-modal')" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 text-sm font-medium">Cancel</button><button onclick="closeModal('signout-modal');logout()" class="flex-1 py-2.5 rounded-lg bg-red-600 text-white font-bold text-sm hover:opacity-90">Sign out</button>
+      </div>
+   </div>
+  </div><!-- Deactivate Modal -->
+  <div id="deactivate-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-sm w-full p-6 relative"><button onclick="closeModal('deactivate-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-white" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="text-lg font-bold text-white mb-2">Deactivate Account</h2>
+    <p class="text-sm text-gray-400 mb-5">This action will deactivate your account. You won't be able to access your mining rewards until reactivation. Are you sure?</p>
+    <div class="flex gap-3">
+     <button onclick="closeModal('deactivate-modal')" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 text-sm font-medium">Cancel</button><button onclick="closeModal('deactivate-modal');showToast('Account deactivation requested')" class="flex-1 py-2.5 rounded-lg bg-red-600 text-white font-bold text-sm hover:opacity-90">Deactivate</button>
+    </div>
+   </div>
+  </div>
+  <div class="flex min-h-screen"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+    <div class="flex items-center gap-2 mb-8">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+      <i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+    </div>
+    <nav class="flex-1 space-y-1" aria-label="Main navigation"><a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard</a> <a href="tasks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="axe" style="width:18px;height:18px;"></i>Tasks
+    </a> <a href="wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet</a> <a href="profile.html" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium"><i data-lucide="user" style="width:18px;height:18px;"></i>Profile</a> <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="settings" style="width:18px;height:18px;"></i>Settings</a>
+    </nav>
+    <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center gap-3">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white" data-user-initials>
+      TW
+     </div>
+     <div class="overflow-hidden">
+      <p class="text-sm font-medium text-white truncate" data-user-name>Terraim Wilson</p>
+      <p class="text-xs text-gray-500 truncate" data-user-email>ter••••@example.com</p>
+     </div>
+    </div>
+   </aside><!-- Main -->
+   <div class="flex-1 flex flex-col min-w-0"><!-- Header -->
+    <header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+     <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300" onclick="toggleSidebar()" aria-label="Toggle menu"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+      <div class="hidden lg:flex items-center gap-1"><a href="dashboard.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Dashboard</a> <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Tasks</a> <a href="wallet.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Wallet</a> <a href="profile.html" class="top-nav-active px-3 py-1.5 text-sm font-medium border-b-2">Profile</a> <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+      </div>
+     </div><button class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5" aria-label="Notifications"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span></button>
+    </header>
+    <main class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6"><!-- Heading -->
+     <div>
+      <h1 data-template-id="page-heading" class="canva-text text-2xl font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 30px;">Profile</h1>
+      <p data-template-id="page-subtitle" class="canva-text text-sm mt-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Manage your personal information and account preferences.</p>
+     </div><!-- Profile Hero -->
+     <div data-template-id="profile-hero" class="canva-card rounded-2xl p-6 border border-[#1e293b] glow-card" style="background: linear-gradient(135deg, rgb(13, 21, 37), rgb(17, 24, 39));">
+      <div class="flex flex-col sm:flex-row items-center gap-5">
+       <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center text-2xl font-bold text-[#0a0f1a] shrink-0" data-user-initials>
+        TW
+       </div>
+       <div class="flex-1 text-center sm:text-left">
+        <h2 data-template-id="profile-name" id="profile-name" class="canva-text text-xl font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Terraim Wilson</h2>
+        <p class="text-sm text-gray-400 mt-0.5" data-user-email>ter••••@example.com</p>
+        <div class="flex items-center justify-center sm:justify-start gap-3 mt-2"><span class="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-900/40 px-2 py-1 rounded-full"><i data-lucide="badge-check" style="width:12px;height:12px;"></i> Verified member</span> <span class="text-xs text-gray-500">Member since 2026</span>
+        </div>
+       </div><button data-template-id="edit-profile-btn" class="canva-button px-4 py-2 rounded-lg bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90 shrink-0" onclick="enableEdit()" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Edit profile</button>
+      </div>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6"><!-- Personal Information -->
+      <div data-template-id="personal-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <div class="flex items-center justify-between mb-4">
+        <h2 data-template-id="personal-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Personal information</h2>
+        <div id="personal-actions" class="flex gap-2"><button id="edit-btn" onclick="enableEdit()" class="text-xs text-gray-400 border border-[#1e293b] px-3 py-1.5 rounded-lg hover:text-white hover:border-gray-500">Edit</button> <button id="save-btn" onclick="saveProfile()" class="hidden text-xs text-[#111827] bg-[#facc15] px-3 py-1.5 rounded-lg font-bold hover:opacity-90">Save changes</button> <button id="cancel-btn" onclick="cancelEdit()" class="hidden text-xs text-gray-400 border border-[#1e293b] px-3 py-1.5 rounded-lg hover:text-white hover:border-gray-500">Cancel</button>
+        </div>
+       </div>
+       <div class="space-y-4">
+        <div>
+         <label for="field-name" class="text-xs text-gray-500 block mb-1">Full name</label><input id="field-name" type="text" value="Terraim Wilson" disabled="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635] disabled:opacity-60">
+        </div>
+        <div>
+         <label for="field-email" class="text-xs text-gray-500 block mb-1">Email</label><input id="field-email" type="email" value="ter••••@example.com" disabled="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635] disabled:opacity-60">
+        </div>
+        <div>
+         <label for="field-phone" class="text-xs text-gray-500 block mb-1">Phone</label><input id="field-phone" type="text" value="+1 ••• ••• 4821" disabled="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635] disabled:opacity-60">
+        </div>
+        <div>
+         <label for="field-country" class="text-xs text-gray-500 block mb-1">Country</label><input id="field-country" type="text" value="United States" disabled="" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635] disabled:opacity-60">
+        </div>
+       </div>
+      </div><!-- Account Overview -->
+      <div data-template-id="account-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <h2 data-template-id="account-title" class="canva-text font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Account overview</h2>
+       <div class="space-y-4">
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-gray-400">Current plan</span><span class="text-sm text-white font-medium">Level 0 / Starter</span>
+        </div>
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-gray-400">Account ID</span>
+         <div class="flex items-center gap-2">
+          <span class="text-sm text-white font-mono">AMX-••••-4821</span><button onclick="copyAccountId()" class="text-gray-500 hover:text-[#a3e635]" aria-label="Copy account ID"><i data-lucide="copy" style="width:14px;height:14px;"></i></button>
+         </div>
+        </div>
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-gray-400">Available balance</span><span class="text-sm text-white font-bold">$70.00</span>
+        </div>
+        <div class="flex items-center justify-between">
+         <span class="text-sm text-gray-400">Account status</span><span class="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-900/40 px-2 py-1 rounded-full">Active</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Security -->
+     <div data-template-id="security-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+      <h2 data-template-id="security-title" class="canva-text font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Security &amp; privacy</h2>
+      <div class="space-y-3">
+       <div class="flex items-center justify-between py-2">
+        <div class="flex items-center gap-3">
+         <div class="w-8 h-8 rounded-full bg-emerald-900/50 flex items-center justify-center">
+          <i data-lucide="lock" style="width:16px;height:16px;" class="text-emerald-400"></i>
+         </div>
+         <div>
+          <p class="text-sm text-white font-medium">Password</p>
+          <p class="text-xs text-gray-500">Last changed 30 days ago</p>
+         </div>
+        </div><button onclick="openModal('password-modal')" class="text-xs text-gray-400 border border-[#1e293b] px-3 py-1.5 rounded-lg hover:text-white hover:border-gray-500">Manage</button>
+       </div>
+       <div class="flex items-center justify-between py-2">
+        <div class="flex items-center gap-3">
+         <div class="w-8 h-8 rounded-full bg-emerald-900/50 flex items-center justify-center">
+          <i data-lucide="shield-check" style="width:16px;height:16px;" class="text-emerald-400"></i>
+         </div>
+         <div>
+          <p class="text-sm text-white font-medium">Two-factor authentication</p>
+          <p class="text-xs text-gray-500">Not enabled</p>
+         </div>
+        </div>
+        <div class="flex items-center gap-2">
+         <span class="text-[10px] px-2 py-0.5 rounded bg-yellow-900/40 text-yellow-400">Recommended</span><button onclick="openModal('twofa-modal')" class="text-xs text-[#a3e635] border border-[#a3e635] px-3 py-1.5 rounded-lg hover:bg-[#a3e635]/10">Enable</button>
+        </div>
+       </div>
+       <div class="flex items-center justify-between py-2">
+        <div class="flex items-center gap-3">
+         <div class="w-8 h-8 rounded-full bg-emerald-900/50 flex items-center justify-center">
+          <i data-lucide="mail-check" style="width:16px;height:16px;" class="text-emerald-400"></i>
+         </div>
+         <div>
+          <p class="text-sm text-white font-medium">Email verification</p>
+          <p class="text-xs text-gray-500">Verified</p>
+         </div>
+        </div><span class="text-[10px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-400">Verified</span>
+       </div>
+       <div class="flex items-center justify-between py-2">
+        <div class="flex items-center gap-3">
+         <div class="w-8 h-8 rounded-full bg-emerald-900/50 flex items-center justify-center">
+          <i data-lucide="monitor" style="width:16px;height:16px;" class="text-emerald-400"></i>
+         </div>
+         <div>
+          <p class="text-sm text-white font-medium">Login alerts</p>
+          <p class="text-xs text-gray-500">Enabled</p>
+         </div>
+        </div><span class="text-[10px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-400">Enabled</span>
+       </div>
+       <div class="flex items-center justify-between py-2">
+        <div class="flex items-center gap-3">
+         <div class="w-8 h-8 rounded-full bg-emerald-900/50 flex items-center justify-center">
+          <i data-lucide="shield" style="width:16px;height:16px;" class="text-emerald-400"></i>
+         </div>
+         <div>
+          <p class="text-sm text-white font-medium">Withdrawal protection</p>
+          <p class="text-xs text-gray-500">Active</p>
+         </div>
+        </div><span class="text-[10px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-400">Enabled</span>
+       </div>
+      </div>
+     </div><!-- Preferences -->
+     <div data-template-id="preferences-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+      <h2 data-template-id="preferences-title" class="canva-text font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Preferences</h2>
+      <div class="space-y-4">
+       <div class="flex items-center justify-between">
+        <span class="text-sm text-white">Claim notifications</span><button class="toggle-track active" onclick="toggleSwitch(this)" aria-label="Toggle claim notifications">
+         <div class="toggle-thumb"></div></button>
+       </div>
+       <div class="flex items-center justify-between">
+        <span class="text-sm text-white">Earnings updates</span><button class="toggle-track active" onclick="toggleSwitch(this)" aria-label="Toggle earnings updates">
+         <div class="toggle-thumb"></div></button>
+       </div>
+       <div class="flex items-center justify-between">
+        <span class="text-sm text-white">Security alerts</span><button class="toggle-track active" onclick="toggleSwitch(this)" aria-label="Toggle security alerts">
+         <div class="toggle-thumb"></div></button>
+       </div>
+       <div class="flex items-center justify-between">
+        <span class="text-sm text-white">Marketing emails</span><button class="toggle-track inactive" onclick="toggleSwitch(this)" aria-label="Toggle marketing emails">
+         <div class="toggle-thumb"></div></button>
+       </div>
+       <div class="border-t border-[#1e293b] pt-4 flex items-center justify-between">
+        <span class="text-sm text-white">Theme</span><span class="text-xs text-gray-400 bg-[#0a0f1a] border border-[#1e293b] px-3 py-1.5 rounded-lg"><i data-lucide="moon" style="width:12px;height:12px;" class="inline-block mr-1 align-middle"></i>Dark mode</span>
+       </div>
+      </div>
+     </div><!-- Danger Zone -->
+     <div data-template-id="danger-card" class="canva-card rounded-xl p-5 border border-red-900/40" style="background: rgb(17, 24, 39);">
+      <h2 data-template-id="danger-title" class="canva-text font-bold mb-4" style="color: rgb(248, 113, 113); font-weight: 700; font-style: normal; font-size: 18px;">Danger zone</h2>
+      <div class="flex flex-wrap gap-3"><button onclick="openModal('deactivate-modal')" class="px-4 py-2 rounded-lg border border-red-700 text-red-400 text-sm font-medium hover:bg-red-900/20">Deactivate account</button> <button onclick="openModal('signout-modal')" class="px-4 py-2 rounded-lg border border-[#1e293b] text-gray-300 text-sm font-medium hover:bg-white/5">Sign out</button>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="shared-navbar.js"></script>
+ 
+</body></html>

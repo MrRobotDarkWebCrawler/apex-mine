@@ -1,0 +1,148 @@
+﻿<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine - Wallet</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);"><!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden toast-enter">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" class="text-emerald-400" style="width:18px;height:18px;"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- Deposit Modal -->
+  <div id="deposit-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"><button onclick="closeDeposit()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 data-template-id="deposit-modal-title" class="canva-text text-xl font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Deposit funds</h2>
+    <div class="space-y-4">
+     <div><label data-template-id="deposit-amount-label" for="deposit-amount" class="canva-text text-sm block mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Amount (USD)</label> <input id="deposit-amount" type="number" min="1" placeholder="Enter amount" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635]">
+      <p id="deposit-error" class="text-xs text-red-400 mt-1 hidden">Please enter a valid amount greater than 0</p>
+     </div>
+     <div><label data-template-id="deposit-method-label" for="deposit-method" class="canva-text text-sm block mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Payment method</label> <select id="deposit-method" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635]"> <option>Bank Transfer</option> <option>Crypto (USDT)</option> <option>Card Payment</option> </select>
+     </div><button data-template-id="deposit-confirm-btn" onclick="confirmDeposit()" class="canva-button w-full py-2.5 rounded-lg font-semibold text-sm" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Confirm deposit</button>
+    </div>
+   </div>
+  </div><!-- Withdraw Modal -->
+  <div id="withdraw-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"><button onclick="closeWithdraw()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 data-template-id="withdraw-modal-title" class="canva-text text-xl font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Withdraw funds</h2>
+    <div class="space-y-4">
+     <div><label data-template-id="withdraw-amount-label" for="withdraw-amount" class="canva-text text-sm block mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Amount (USD)</label> <input id="withdraw-amount" type="number" min="1" placeholder="Enter amount" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635]">
+      <p id="withdraw-balance-hint" class="text-xs text-gray-400 mt-1">Available: $<span id="withdraw-avail">70.00</span></p>
+      <p id="withdraw-error" class="text-xs text-red-400 mt-1 hidden"></p>
+     </div>
+     <div><label data-template-id="withdraw-address-label" for="withdraw-address" class="canva-text text-sm block mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Destination address</label> <input id="withdraw-address" type="text" placeholder="Enter wallet address" class="w-full bg-[#0a0f1a] border border-[#1e293b] rounded-lg px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#a3e635]">
+      <p id="withdraw-addr-error" class="text-xs text-red-400 mt-1 hidden">Please enter a destination address</p>
+     </div><button data-template-id="withdraw-confirm-btn" onclick="confirmWithdraw()" class="canva-button w-full py-2.5 rounded-lg font-semibold text-sm" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Confirm withdrawal</button>
+    </div>
+   </div>
+  </div>
+  <div class="flex min-h-screen"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+    <div class="flex items-center gap-2 mb-8">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+      <i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+    </div>
+    <nav class="flex-1 space-y-1" aria-label="Main navigation"><a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard</a> <a href="tasks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"> <i data-lucide="axe" style="width:18px;height:18px;"></i>Tasks</a> <a href="wallet.html" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium"><i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet</a> <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="user" style="width:18px;height:18px;"></i>Profile</a> <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="settings" style="width:18px;height:18px;"></i>Settings</a>
+    
+    <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center gap-3">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white" data-user-initials>
+      TW
+     </div>
+  <script src="shared-navbar.js"></script>
+     <div class="overflow-hidden">
+      <p class="text-sm font-medium text-white truncate" data-user-name>Terraim Wilson</p>
+      <p class="text-xs text-gray-500 truncate" data-user-email>terraim@mail.co...</p>
+     </div>
+    </div>
+   </aside><!-- Main -->
+   <div class="flex-1 flex flex-col min-w-0"><!-- Top Header -->
+    <header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+     <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300" onclick="document.getElementById('sidebar').classList.toggle('hidden')"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+      <div class="hidden lg:flex items-center gap-1"><a href="dashboard.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Dashboard</a> <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Tasks</a> <a href="wallet.html" class="top-nav-active px-3 py-1.5 text-sm font-medium border-b-2">Wallet</a> <a href="profile.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Profile</a> <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+        
+      </div>
+     </div><button class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5" aria-label="Notifications"> <i data-lucide="bell" style="width:20px;height:20px;"></i> <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span> </button>
+    </header>
+    <main class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6"><!-- Page Title -->
+     <div>
+      <h1 data-template-id="page-heading" class="canva-text text-2xl font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 30px;">Wallet</h1>
+      <p data-template-id="page-subtitle" class="canva-text text-sm mt-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Manage your balance, deposits, and withdrawals securely.</p>
+     </div><!-- Balance Card -->
+     <div data-template-id="balance-card" class="canva-card rounded-2xl p-6 border border-[#1e293b] glow-card" style="background: rgb(13, 21, 37);">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+       <div>
+        <p data-template-id="balance-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Available balance</p>
+        <p id="main-balance" class="text-4xl font-bold text-white">$5.00</p>
+        <p data-template-id="balance-equiv" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">USD equivalent</p>
+       </div>
+       <div class="flex flex-col items-start sm:items-end gap-2">
+        <div class="flex items-center gap-2 text-xs text-gray-400"><span id="masked-addr">0x7a3f...b92e</span> <button onclick="copyAddress()" class="text-gray-400 hover:text-[#a3e635] p-1" aria-label="Copy address"><i data-lucide="copy" style="width:14px;height:14px;"></i></button>
+        </div>
+        <div class="flex items-center gap-1 text-xs text-emerald-400"><i data-lucide="trending-up" style="width:14px;height:14px;"></i> <span>+$5.00 today</span>
+        </div>
+       </div>
+      </div>
+      <div class="flex gap-3 mt-5"><button data-template-id="deposit-btn" onclick="openDeposit()" class="canva-button px-6 py-2.5 rounded-lg font-semibold text-sm" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Deposit</button> <button data-template-id="withdraw-btn" onclick="openWithdraw()" class="canva-button px-6 py-2.5 rounded-lg font-semibold text-sm border border-[#a3e635]" style="background: transparent; color: rgb(163, 230, 53); font-weight: 600; font-style: normal; font-size: 15px;">Withdraw</button>
+      </div>
+     </div><!-- Quick Stats -->
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div data-template-id="stat-earned" class="canva-card rounded-xl p-4 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="stat-earned-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Total Earned</p>
+       <p id="stat-earned-val" class="text-xl font-bold text-white">$5.00</p>
+      </div>
+      <div data-template-id="stat-withdrawn" class="canva-card rounded-xl p-4 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="stat-withdrawn-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Total Withdrawn</p>
+       <p id="stat-withdrawn-val" class="text-xl font-bold text-white">$0.00</p>
+      </div>
+      <div data-template-id="stat-pending" class="canva-card rounded-xl p-4 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="stat-pending-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Pending</p>
+       <p id="stat-pending-val" class="text-xl font-bold text-white">$0.00</p>
+      </div>
+     </div><!-- Transactions & Security -->
+     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4"><!-- Transactions -->
+      <div data-template-id="transactions-card" class="canva-card lg:col-span-2 rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <div class="flex items-center justify-between mb-4">
+        <h3 data-template-id="transactions-title" class="canva-text font-bold flex items-center gap-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Recent transactions</h3>
+        <div id="filter-tabs" class="flex gap-1 text-xs"><button onclick="filterTx('all')" class="filter-active px-2.5 py-1 rounded-md">All</button> <button onclick="filterTx('deposit')" class="px-2.5 py-1 rounded-md text-gray-400 hover:text-white">Deposits</button> <button onclick="filterTx('withdrawal')" class="px-2.5 py-1 rounded-md text-gray-400 hover:text-white">Withdrawals</button> <button onclick="filterTx('earning')" class="px-2.5 py-1 rounded-md text-gray-400 hover:text-white">Earnings</button>
+        </div>
+       </div>
+       <div id="tx-list" class="space-y-3"></div>
+       <p id="tx-empty" class="text-sm text-gray-500 text-center py-6 hidden">No transactions found</p>
+      </div><!-- Security -->
+      <div data-template-id="security-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <h3 data-template-id="security-title" class="canva-text font-bold mb-4 flex items-center gap-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Wallet security</h3>
+       <div class="space-y-3">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <span class="text-sm text-gray-300">2FA Enabled</span>
+         </div><button class="text-xs text-gray-400 hover:text-[#a3e635]">Manage</button>
+        </div>
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> <span class="text-sm text-gray-300">Email Verified</span>
+         </div><button class="text-xs text-gray-400 hover:text-[#a3e635]">Manage</button>
+        </div>
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> <span class="text-sm text-gray-300">Withdrawal PIN</span>
+         </div><button class="text-xs text-gray-400 hover:text-[#a3e635]">Manage</button>
+        </div>
+       </div>
+       <div class="border-t border-[#1e293b] mt-4 pt-4">
+        <p class="text-xs text-gray-400 mb-2">Connected wallet</p>
+        <div class="flex items-center justify-between"><span class="text-sm text-gray-300 font-mono">0x7a3f...b92e</span> <button class="text-xs text-red-400 hover:text-red-300">Disconnect</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="/_sdk/fef09cb5f5b2424b.editing_sdk.js" integrity="sha512-PbmCvZWt+xecnQll4ofK5HTtTS+pGwwY1xn9+p49qHgEHml+uvyc0o1f2Eltkd4t324iwgnf7acUjfnKHkik1w=="></script>
+  <script src="js/common.js"></script>
+  <script src="js/wallet.js"></script>
+ 
+</body></html>

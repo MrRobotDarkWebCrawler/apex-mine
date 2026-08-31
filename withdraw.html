@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine - Withdraw</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);"><!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden toast-enter">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" class="text-emerald-400" style="width:18px;height:18px;"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- Review Modal -->
+  <div id="review-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"><button onclick="closeReviewModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 id="review-modal-title" class="text-lg font-bold text-white mb-4">Confirm Withdrawal</h2>
+    <div id="review-details" class="space-y-3 text-sm"></div>
+    <div class="flex gap-3 mt-6"><button onclick="closeReviewModal()" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Cancel</button> <button onclick="confirmWithdrawal()" class="flex-1 py-2.5 rounded-lg bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-yellow-400">Confirm withdrawal</button>
+    </div>
+   </div>
+  </div><!-- 2FA Modal -->
+  <div id="tfa-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-sm w-full p-6 relative"><button onclick="closeTfaModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="text-lg font-bold text-white mb-2">Enable Two-Factor Authentication</h2>
+    <p class="text-sm text-gray-400 mb-4">Add an extra layer of security to your account. You'll need an authenticator app to generate verification codes for withdrawals.</p><button onclick="closeTfaModal();showToast('2FA enabled successfully')" class="w-full py-2.5 rounded-lg bg-[#a3e635] text-[#0a0f1a] font-bold text-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-lime-400">Enable 2FA</button>
+   </div>
+  </div><!-- Remove Wallet Modal -->
+  <div id="remove-modal" class="fixed inset-0 z-40 hidden modal-overlay items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-sm w-full p-6 relative"><button onclick="closeRemoveModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="text-lg font-bold text-white mb-2">Remove saved wallet?</h2>
+    <p class="text-sm text-gray-400 mb-4">This wallet address will be removed from your saved destinations.</p>
+    <div class="flex gap-3"><button onclick="closeRemoveModal()" class="flex-1 py-2.5 rounded-lg border border-[#1e293b] text-gray-300 hover:bg-white/5 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#a3e635]">Cancel</button> <button onclick="removeWallet()" class="flex-1 py-2.5 rounded-lg bg-red-600 text-white font-bold text-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-red-400">Remove</button>
+    </div>
+   </div>
+  </div>
+  <div class="flex min-h-screen"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+    <div class="flex items-center gap-2 mb-8">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+      <i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+    </div>
+    <nav class="flex-1 space-y-1" aria-label="Main navigation"><a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard</a> <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="user" style="width:18px;height:18px;"></i>Profile</a> <a href="wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet</a> <a href="withdraw.html" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium"><i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i>Withdraw</a> <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="bell" style="width:18px;height:18px;"></i>Notifications</a> <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5"><i data-lucide="settings" style="width:18px;height:18px;"></i>Settings</a>
+    </nav>
+    <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center gap-3">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white">
+      TW
+     </div>
+     <div class="overflow-hidden">
+      <p class="text-sm font-medium text-white truncate">Terraim Wilson</p>
+      <p class="text-xs text-gray-500 truncate">t****m@mail.co</p>
+     </div>
+    </div>
+   </aside><!-- Main -->
+   <div class="flex-1 flex flex-col min-w-0"><!-- Header -->
+    <header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+     <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#a3e635] rounded" onclick="document.getElementById('sidebar').classList.toggle('hidden');document.getElementById('sidebar').classList.toggle('fixed');document.getElementById('sidebar').classList.toggle('inset-y-0');document.getElementById('sidebar').classList.toggle('left-0');document.getElementById('sidebar').classList.toggle('z-30');document.getElementById('sidebar').classList.toggle('flex');" aria-label="Toggle menu"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+      <div class="lg:hidden flex items-center gap-2">
+       <div class="w-7 h-7 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+        <i data-lucide="hexagon" style="width:14px;height:14px;" class="text-[#0a0f1a]"></i>
+       </div><span class="font-bold text-sm text-white">ApexMine</span>
+      </div>
+      <div class="hidden lg:flex items-center gap-1"><a href="dashboard.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Dashboard</a> <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Earnings</a> <a href="wallet.html" class="top-nav-active px-3 py-1.5 text-sm font-medium border-b-2">Wallet</a> <a href="profile.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Profile</a> <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+      </div>
+     </div><button class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-label="Notifications"><i data-lucide="bell" style="width:20px;height:20px;"></i><span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span></button>
+    </header>
+    <main class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6"><!-- Page Title -->
+     <div>
+      <h1 data-template-id="page-heading" class="canva-text text-2xl font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 30px;">Withdraw earnings</h1>
+      <p data-template-id="page-subtitle" class="canva-text text-sm mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">Cash out your available ApexMine balance securely.</p>
+      <p id="withdrawal-status" class="text-sm mt-2 text-yellow-300 hidden"></p>
+     </div><!-- Balance Hero -->
+     <div data-template-id="balance-hero" class="canva-card rounded-xl p-6 border border-[#1e293b] glow-balance" style="background: rgb(17, 24, 39);">
+      <p data-template-id="balance-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">AVAILABLE TO WITHDRAW</p>
+      <p id="available-balance" class="text-3xl font-bold text-white">$70.00</p>
+      <p data-template-id="balance-equiv" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">USD equivalent</p>
+      <div class="flex items-center justify-between mt-4">
+       <div><span class="text-xs text-gray-500">Lifetime withdrawn</span> <span id="lifetime-withdrawn" class="text-sm font-semibold text-white ml-2">$0.00</span>
+       </div><a href="wallet.html" class="text-xs text-[#22d3ee] hover:underline">View wallet →</a>
+      </div>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6"><!-- Left Column -->
+      <div class="lg:col-span-2 space-y-6"><!-- Withdrawal Form -->
+       <div data-template-id="form-card" class="canva-card rounded-xl p-6 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="form-title" class="canva-text text-lg font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Withdrawal form</h2>
+        <form id="withdraw-form" class="space-y-4" onsubmit="return false;">
+         <div><label for="amount-input" class="text-xs text-gray-400 uppercase tracking-wider mb-1 block">Amount</label>
+          <div class="flex items-center border border-[#1e293b] rounded-lg overflow-hidden focus-within:border-[#a3e635] transition-colors"><span class="px-3 text-sm text-gray-400 bg-[#0d1525]">$</span> <input id="amount-input" type="number" step="0.01" min="0" placeholder="0.00" class="flex-1 bg-transparent text-white px-3 py-2.5 text-sm focus:outline-none"> <button type="button" onclick="fillMax()" class="px-3 text-xs font-bold text-[#a3e635] hover:text-white transition-colors">Max</button>
+          </div>
+          <p id="amount-error" class="text-xs text-red-400 mt-1 hidden"></p>
+         </div>
+         <div><label for="address-input" class="text-xs text-gray-400 uppercase tracking-wider mb-1 block">Destination wallet address</label> <input id="address-input" type="text" placeholder="0x..." class="w-full bg-transparent border border-[#1e293b] rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-[#a3e635] transition-colors">
+          <p id="address-error" class="text-xs text-red-400 mt-1 hidden"></p>
+         </div>
+         <div><label class="text-xs text-gray-400 uppercase tracking-wider mb-1 block">Saved destinations</label> <button type="button" id="saved-dest-btn" onclick="useSavedAddress()" class="w-full text-left bg-[#0d1525] border border-[#1e293b] rounded-lg px-3 py-2.5 text-sm text-gray-300 hover:border-[#a3e635] transition-colors focus:outline-none focus:ring-2 focus:ring-[#a3e635]"> <span class="text-gray-400">0x7A••••91C4</span> <span class="text-xs text-gray-500 ml-2">— Verified</span> </button>
+         </div><!-- Fee Summary -->
+         <div class="bg-[#0d1525] rounded-lg p-4 space-y-2 text-sm">
+          <div class="flex justify-between">
+           <span class="text-gray-400">Withdrawal amount</span><span id="fee-amount" class="text-white">$0.00</span>
+          </div>
+          <div class="flex justify-between">
+           <span class="text-gray-400">Network fee</span><span class="text-white">$0.00</span>
+          </div>
+          <div class="border-t border-[#1e293b] pt-2 flex justify-between font-semibold">
+           <span class="text-gray-300">You receive</span><span id="fee-receive" class="text-[#a3e635]">$0.00</span>
+          </div>
+         </div><button type="button" onclick="reviewWithdrawal()" data-template-id="review-btn" class="canva-button w-full py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-yellow-400" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Review withdrawal</button>
+        </form>
+       </div><!-- Recent Withdrawals -->
+       <div data-template-id="recent-card" class="canva-card rounded-xl p-6 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+        <h2 data-template-id="recent-title" class="canva-text text-lg font-bold mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Recent withdrawals</h2>
+        <div class="flex gap-2 mb-4 flex-wrap"><button onclick="filterTx('all')" class="filter-btn filter-active px-3 py-1 rounded-full text-xs font-medium transition-colors" data-filter="all">All</button> <button onclick="filterTx('completed')" class="filter-btn px-3 py-1 rounded-full text-xs font-medium text-gray-400 hover:text-white transition-colors" data-filter="completed">Completed</button> <button onclick="filterTx('pending')" class="filter-btn px-3 py-1 rounded-full text-xs font-medium text-gray-400 hover:text-white transition-colors" data-filter="pending">Pending</button> <button onclick="filterTx('failed')" class="filter-btn px-3 py-1 rounded-full text-xs font-medium text-gray-400 hover:text-white transition-colors" data-filter="failed">Failed</button>
+        </div>
+        <div id="tx-list" class="space-y-3"></div>
+        <p id="tx-empty" class="text-sm text-gray-500 text-center py-6 hidden">No withdrawals match this filter.</p>
+       </div>
+      </div><!-- Right Column -->
+      <div class="space-y-6"><!-- Limits -->
+       <div data-template-id="limits-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+        <h3 data-template-id="limits-title" class="canva-text font-bold mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Withdrawal limits</h3>
+        <div class="space-y-3 text-sm">
+         <div class="flex justify-between">
+          <span class="text-gray-400">Minimum withdrawal</span><span class="text-white font-medium">$10.00</span>
+         </div>
+         <div class="flex justify-between">
+          <span class="text-gray-400">Daily limit</span><span class="text-white font-medium">$1,000.00</span>
+         </div>
+         <div class="flex justify-between">
+          <span class="text-gray-400">Processing time</span><span class="text-white font-medium">Up to 24 hours</span>
+         </div>
+         <div class="flex justify-between">
+          <span class="text-gray-400">Network</span><span class="text-[#22d3ee] font-medium">ApexMine network</span>
+         </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Withdrawals are processed in batches. Times may vary during high demand.</p>
+       </div><!-- Security -->
+       <div data-template-id="security-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+        <h3 data-template-id="security-title" class="canva-text font-bold mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Withdrawal protection</h3>
+        <div class="space-y-3">
+         <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+           <i data-lucide="shield" style="width:16px;height:16px;" class="text-[#a3e635]"></i><span class="text-sm text-gray-300">Two-factor auth</span>
+          </div><button onclick="openTfaModal()" class="text-xs text-[#22d3ee] hover:underline focus:outline-none">Enable</button>
+         </div>
+         <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+           <i data-lucide="mail" style="width:16px;height:16px;" class="text-[#a3e635]"></i><span class="text-sm text-gray-300">Verified email</span>
+          </div><span class="text-xs text-[#a3e635] font-medium">Verified</span>
+         </div>
+         <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+           <i data-lucide="lock" style="width:16px;height:16px;" class="text-gray-500"></i><span class="text-sm text-gray-300">Withdrawal lock</span>
+          </div><span class="text-xs text-yellow-400 font-medium">Recommended</span>
+         </div>
+        </div>
+        <p class="text-xs text-gray-500 mt-3 border-t border-[#1e293b] pt-3">⚠️ Withdrawals may be held for up to 24h for security review.</p>
+       </div><!-- Saved Wallets -->
+       <div data-template-id="saved-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+        <h3 data-template-id="saved-title" class="canva-text font-bold mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Saved wallets</h3>
+        <div id="saved-wallet-item" class="bg-[#0d1525] rounded-lg p-3 border border-[#1e293b]">
+         <div class="flex items-center justify-between mb-2"><span class="text-sm text-gray-300 font-mono">0x7A••••91C4</span> <span class="text-xs bg-emerald-900/50 text-emerald-400 px-2 py-0.5 rounded-full font-medium">Verified</span>
+         </div>
+         <div class="flex gap-2"><button onclick="copyAddress()" class="text-xs text-[#22d3ee] hover:underline focus:outline-none">Copy address</button> <button onclick="openRemoveModal()" class="text-xs text-red-400 hover:underline focus:outline-none">Remove</button>
+         </div>
+        </div>
+        <div id="saved-wallet-empty" class="hidden text-sm text-gray-500 text-center py-3">
+         No saved wallets.
+        </div>
+       </div>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="js/common.js"></script>
+  <script src="shared-navbar.js"></script>
+  <script>
+// ENFORCE AUTHENTICATION FIRST - Must be before any other code
+if (!enforceAuthentication()) {
+  redirectToLogin();
+}
+
+lucide.createIcons();
+
+let balance = 70;
+let lifetimeWithdrawn = 0;
+
+const defaultWithdrawalSettings = {
+  enabled: true,
+  minimumWithdrawal: 10,
+  dailyLimit: 1000,
+  processingWindowHours: 24,
+  scheduleByLevel: {
+    1: { enabled: true, frequency: 'weekly', day: 'Monday', time: '09:00' },
+    2: { enabled: true, frequency: 'weekly', day: 'Tuesday', time: '09:00' },
+    3: { enabled: true, frequency: 'weekly', day: 'Wednesday', time: '09:00' },
+    4: { enabled: true, frequency: 'weekly', day: 'Thursday', time: '09:00' },
+    5: { enabled: true, frequency: 'weekly', day: 'Friday', time: '09:00' }
+  }
+};
+
+async function syncWithdrawalSettingsFromServer() {
+  try {
+    const response = await fetch('http://localhost:3000/api/withdrawal-settings', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    if (!response.ok) return;
+    const result = await response.json();
+    const settings = result?.data || null;
+    if (!settings) return;
+
+    localStorage.setItem('dashboardWithdrawalSettings', JSON.stringify(settings));
+    return settings;
+  } catch (error) {
+    return null;
+  }
+}
+
+function getWithdrawalSettings() {
+  try {
+    const stored = JSON.parse(localStorage.getItem('dashboardWithdrawalSettings'));
+    if (!stored) return defaultWithdrawalSettings;
+    return {
+      ...defaultWithdrawalSettings,
+      ...stored,
+      scheduleByLevel: {
+        ...defaultWithdrawalSettings.scheduleByLevel,
+        ...(stored.scheduleByLevel || {})
+      }
+    };
+  } catch (error) {
+    return defaultWithdrawalSettings;
+  }
+}
+
+function getUserLevel() {
+  return Number(localStorage.getItem('userLevel') || 1);
+}
+
+function getWithdrawalAvailabilityInfo() {
+  const settings = getWithdrawalSettings();
+  const level = getUserLevel();
+  const config = settings.scheduleByLevel?.[level] || settings.scheduleByLevel?.[1] || defaultWithdrawalSettings.scheduleByLevel[1];
+
+  if (!settings.enabled) {
+    return { allowed: false, message: 'Withdrawals are currently disabled by the admin.' };
+  }
+
+  if (!config || config.enabled === false || config.frequency === 'off') {
+    return { allowed: false, message: `Withdrawals for Level ${level} are currently paused.` };
+  }
+
+  if (config.frequency === 'weekly') {
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const now = new Date();
+    const today = days[now.getDay()];
+    const [hour, minute] = (config.time || '09:00').split(':').map(Number);
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const targetMinutes = hour * 60 + minute;
+
+    if (today !== config.day) {
+      return { allowed: false, message: `Withdrawals open for Level ${level} every ${config.day} at ${config.time}.` };
+    }
+
+    if (currentMinutes < targetMinutes) {
+      return { allowed: false, message: `Withdrawals open for Level ${level} at ${config.time} on ${config.day}.` };
+    }
+  }
+
+  return {
+    allowed: true,
+    message: `Level ${level} withdrawals are active. Minimum payout: $${Number(settings.minimumWithdrawal || 10).toFixed(2)}.`
+  };
+}
+
+function applyWithdrawalSettings() {
+  const settings = getWithdrawalSettings();
+  const status = getWithdrawalAvailabilityInfo();
+  const statusEl = document.getElementById('withdrawal-status');
+  const amountInput = document.getElementById('amount-input');
+  const reviewBtn = document.querySelector('[data-template-id="review-btn"]');
+  const minVal = Number(settings.minimumWithdrawal) || 10;
+
+  if (statusEl) {
+    statusEl.textContent = status.message;
+    statusEl.classList.remove('hidden');
+    statusEl.classList.toggle('text-red-300', !status.allowed);
+    statusEl.classList.toggle('text-yellow-300', status.allowed);
+  }
+
+  if (amountInput) {
+    amountInput.min = String(minVal);
+    amountInput.placeholder = `Minimum $${minVal.toFixed(2)}`;
+  }
+
+  if (reviewBtn) {
+    reviewBtn.disabled = !status.allowed;
+    reviewBtn.style.opacity = status.allowed ? '1' : '0.55';
+    reviewBtn.style.cursor = status.allowed ? 'pointer' : 'not-allowed';
+    reviewBtn.textContent = status.allowed ? 'Review withdrawal' : 'Withdrawal paused';
+  }
+
+  if (!status.allowed) {
+    const form = document.getElementById('withdraw-form');
+    if (form) {
+      form.querySelectorAll('input, button').forEach((el) => {
+        if (el.tagName === 'BUTTON' && el.getAttribute('type') === 'button') {
+          el.disabled = true;
+          el.style.opacity = '0.5';
+          el.style.cursor = 'not-allowed';
+        }
+        if (el.tagName === 'INPUT') {
+          el.disabled = true;
+          el.style.opacity = '0.5';
+        }
+      });
+    }
+  }
+}
+
+const transactions = [
+  { id:'TXN-00482', date:'2026-08-04', dest:'0x7A••••91C4', amount:15, status:'completed' },
+  { id:'TXN-00371', date:'2026-08-01', dest:'0x3F••••A2B7', amount:25, status:'completed' },
+  { id:'TXN-00295', date:'2026-07-28', dest:'0x7A••••91C4', amount:10, status:'pending' },
+];
+let currentFilter = 'all';
+let pendingAmount = 0;
+let pendingAddress = '';
+
+function renderTx() {
+  const list = document.getElementById('tx-list');
+  const empty = document.getElementById('tx-empty');
+  const filtered = currentFilter === 'all' ? transactions : transactions.filter(t => t.status === currentFilter);
+  if (filtered.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); return; }
+  empty.classList.add('hidden');
+  list.innerHTML = filtered.map(t => {
+    const badge = t.status === 'completed' ? 'bg-emerald-900/50 text-emerald-400' : t.status === 'pending' ? 'bg-yellow-900/50 text-yellow-400' : 'bg-red-900/50 text-red-400';
+    return `<div class="flex items-center justify-between p-3 bg-[#0d1525] rounded-lg border border-[#1e293b]">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2"><span class="text-sm text-white font-medium">-$${t.amount.toFixed(2)}</span><span class="text-xs px-2 py-0.5 rounded-full font-medium ${badge}">${t.status}</span></div>
+        <p class="text-xs text-gray-500 mt-0.5">${t.date} · ${t.dest} · ${t.id}</p>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterTx(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => { b.classList.remove('filter-active'); b.classList.add('text-gray-400'); });
+  document.querySelector(`[data-filter="${f}"]`).classList.add('filter-active');
+  document.querySelector(`[data-filter="${f}"]`).classList.remove('text-gray-400');
+  renderTx();
+}
+
+function fillMax() { document.getElementById('amount-input').value = balance.toFixed(2); updateFee(); }
+
+function updateFee() {
+  const v = parseFloat(document.getElementById('amount-input').value) || 0;
+  document.getElementById('fee-amount').textContent = `$${v.toFixed(2)}`;
+  document.getElementById('fee-receive').textContent = `$${v.toFixed(2)}`;
+}
+document.getElementById('amount-input').addEventListener('input', updateFee);
+
+function reviewWithdrawal() {
+  const settings = getWithdrawalSettings();
+  const status = getWithdrawalAvailabilityInfo();
+  if (!status.allowed) {
+    const amtErr = document.getElementById('amount-error');
+    if (amtErr) { amtErr.textContent = status.message; amtErr.classList.remove('hidden'); }
+    return;
+  }
+
+  const amtEl = document.getElementById('amount-input');
+  const addrEl = document.getElementById('address-input');
+  const amtErr = document.getElementById('amount-error');
+  const addrErr = document.getElementById('address-error');
+  amtErr.classList.add('hidden'); addrErr.classList.add('hidden');
+  let valid = true;
+  const amt = parseFloat(amtEl.value);
+  const minValue = Number(settings.minimumWithdrawal) || 10;
+  if (!amtEl.value || isNaN(amt) || amt <= 0) { amtErr.textContent = 'Enter a valid amount'; amtErr.classList.remove('hidden'); valid = false; }
+  else if (amt < minValue) { amtErr.textContent = `Minimum withdrawal is $${minValue.toFixed(2)}`; amtErr.classList.remove('hidden'); valid = false; }
+  else if (amt > balance) { amtErr.textContent = 'Insufficient balance'; amtErr.classList.remove('hidden'); valid = false; }
+  const addr = addrEl.value.trim();
+  if (!addr) { addrErr.textContent = 'Enter a wallet address'; addrErr.classList.remove('hidden'); valid = false; }
+  else if (!/^0x[a-fA-F0-9]{8,}$/.test(addr)) { addrErr.textContent = 'Invalid wallet address format'; addrErr.classList.remove('hidden'); valid = false; }
+  if (!valid) return;
+  pendingAmount = amt; pendingAddress = addr;
+  const details = document.getElementById('review-details');
+  const masked = addr.slice(0,4) + '••••' + addr.slice(-4);
+  details.innerHTML = `<div class="flex justify-between"><span class="text-gray-400">Amount</span><span class="text-white font-medium">$${amt.toFixed(2)}</span></div>
+    <div class="flex justify-between"><span class="text-gray-400">Destination</span><span class="text-white font-mono text-xs">${masked}</span></div>
+    <div class="flex justify-between"><span class="text-gray-400">Network fee</span><span class="text-white">$0.00</span></div>
+    <div class="border-t border-[#1e293b] pt-2 flex justify-between font-semibold"><span class="text-gray-300">You receive</span><span class="text-[#a3e635]">$${amt.toFixed(2)}</span></div>`;
+  openModal('review-modal');
+}
+
+function confirmWithdrawal() {
+  balance -= pendingAmount; lifetimeWithdrawn += pendingAmount;
+  document.getElementById('available-balance').textContent = `$${balance.toFixed(2)}`;
+  document.getElementById('lifetime-withdrawn').textContent = `$${lifetimeWithdrawn.toFixed(2)}`;
+  const masked = pendingAddress.slice(0,4) + '••••' + pendingAddress.slice(-4);
+  transactions.unshift({ id:'TXN-' + String(Math.floor(Math.random()*99999)).padStart(5,'0'), date: new Date().toISOString().slice(0,10), dest: masked, amount: pendingAmount, status:'pending' });
+  document.getElementById('amount-input').value = '';
+  document.getElementById('address-input').value = '';
+  updateFee(); renderTx();
+  closeReviewModal();
+  showToast('Withdrawal request submitted');
+}
+
+function useSavedAddress() { document.getElementById('address-input').value = '0x7A3B9F2E8D1C4A6B0E5F7D9C2A4B6E8F1D3C91C4'; }
+
+function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toast-msg').textContent = msg; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 3000); }
+
+function openModal(id) { const m = document.getElementById(id); m.classList.remove('hidden'); m.classList.add('flex'); m.querySelector('button').focus(); }
+function closeReviewModal() { const m = document.getElementById('review-modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+function openTfaModal() { openModal('tfa-modal'); }
+function closeTfaModal() { const m = document.getElementById('tfa-modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+function openRemoveModal() { openModal('remove-modal'); }
+function closeRemoveModal() { const m = document.getElementById('remove-modal'); m.classList.add('hidden'); m.classList.remove('flex'); }
+
+function removeWallet() {
+  document.getElementById('saved-wallet-item').classList.add('hidden');
+  document.getElementById('saved-wallet-empty').classList.remove('hidden');
+  document.getElementById('saved-dest-btn').classList.add('hidden');
+  closeRemoveModal(); showToast('Wallet removed');
+}
+
+function copyAddress() {
+  navigator.clipboard.writeText('0x7A3B9F2E8D1C4A6B0E5F7D9C2A4B6E8F1D3C91C4').then(() => showToast('Wallet address copied'));
+}
+
+// Close modals on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeReviewModal(); closeTfaModal(); closeRemoveModal(); } });
+// Close modals on backdrop click
+['review-modal','tfa-modal','remove-modal'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => { if (e.target === e.currentTarget) { e.target.classList.add('hidden'); e.target.classList.remove('flex'); } });
+});
+
+syncWithdrawalSettingsFromServer().finally(() => {
+  applyWithdrawalSettings();
+  setInterval(async () => {
+    await syncWithdrawalSettingsFromServer();
+    applyWithdrawalSettings();
+  }, 30000);
+});
+renderTx();
+</script>
+ 
+</body></html>

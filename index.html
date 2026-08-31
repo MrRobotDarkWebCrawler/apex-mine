@@ -1,0 +1,345 @@
+﻿<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);"><!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-[100] hidden toast-anim">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" style="width:16px;height:16px" class="text-emerald-400"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- Modal -->
+  <div id="modal-overlay" class="fixed inset-0 z-50 hidden modal-bg items-center justify-center p-4" role="dialog" aria-modal="true">
+   <div id="modal-content" class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-md w-full p-6 relative"></div>
+  </div><!-- Header -->
+  <header id="site-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center"><i data-lucide="hexagon" style="width:18px;height:18px" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="header-brand" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">ApexMine</span>
+    </div>
+    <nav class="hidden lg:flex items-center gap-6"><a href="#features" class="text-sm text-gray-300 hover:text-white transition-colors">Features</a> <a href="#how-it-works" class="text-sm text-gray-300 hover:text-white transition-colors">How it works</a> <a href="#about" class="text-sm text-gray-300 hover:text-white transition-colors">About Us</a> <a href="#faq" class="text-sm text-gray-300 hover:text-white transition-colors">FAQ</a>
+    </nav>
+    <div class="hidden lg:flex items-center gap-3"><a href="login.html" class="text-sm text-gray-300 hover:text-white">Sign in</a> <a href="login.html" class="canva-button px-4 py-2 rounded-lg text-sm font-semibold" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 16px;">Get started</a>
+    </div><button id="mobile-menu-btn" class="lg:hidden text-gray-300 p-2 rounded-lg hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-label="Open menu"> <i data-lucide="menu" style="width:24px;height:24px"></i> </button>
+   </div><!-- Mobile menu -->
+   <div id="mobile-menu" class="hidden lg:hidden bg-[#0d1525] border-t border-[#1e293b] px-4 pb-4">
+    <nav class="flex flex-col gap-2 pt-3"><a href="#features" class="text-sm text-gray-300 py-2 hover:text-white">Features</a> <a href="#how-it-works" class="text-sm text-gray-300 py-2 hover:text-white">How it works</a> <a href="#about" class="text-sm text-gray-300 py-2 hover:text-white">About Us</a> <a href="#faq" class="text-sm text-gray-300 py-2 hover:text-white">FAQ</a> <a href="login.html" class="text-sm text-gray-300 py-2 hover:text-white">Sign in</a> <a href="register.html" class="mt-2 px-4 py-2 rounded-lg bg-[#facc15] text-[#111827] font-semibold text-sm">Get started</a>
+    </nav>
+   </div>
+  </header>
+  <main><!-- Hero -->
+   <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+    <div class="hero-ambient" aria-hidden="true"></div>
+    <div class="hero-cta-glow" aria-hidden="true"></div>
+    <div class="hero-cta-glow green" aria-hidden="true"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+     <div class="flex-1 text-center lg:text-left">
+      <h1 data-template-id="hero-title" class="canva-text font-bold leading-tight" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 42px;">Mine smarter. Track progress. Grow with clarity.</h1>
+      <p data-template-id="hero-subtitle" class="canva-text mt-5 max-w-lg mx-auto lg:mx-0" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">ApexMine gives you a simple, transparent mining dashboard for tracking mined value and managing your unified wallet — all in one place.</p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start"><button data-template-id="hero-cta-primary" class="canva-button px-6 py-3 rounded-xl font-bold text-sm" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 16px;">Get started</button> <button data-template-id="hero-cta-secondary" class="canva-button px-6 py-3 rounded-xl font-semibold text-sm border" style="background: transparent; color: rgb(163, 230, 53); font-weight: 600; font-style: normal; font-size: 16px;">Explore dashboard</button>
+      </div>
+     </div><!-- Abstract illustration -->
+     <div class="flex-1 flex justify-center">
+      <div class="hero-atom" aria-label="Animated mining atom graphic">
+       <svg viewBox="0 0 400 400" class="w-72 h-72 lg:w-96 lg:h-96" aria-hidden="true">
+        <circle class="atom-core-glow" cx="200" cy="200" r="12" fill="none" stroke="#a3e635" stroke-width="1.2" opacity="0.9"></circle>
+        <g class="atom-outer-rotate">
+         <circle cx="200" cy="200" r="120" fill="none" stroke="#a3e635" stroke-width="1" opacity="0.3"></circle>
+         <circle class="orbit-node delay-1" cx="200" cy="80" r="5" fill="#a3e635" opacity="0.8"></circle>
+         <circle class="orbit-node delay-2" cx="200" cy="320" r="5" fill="#a3e635" opacity="0.8"></circle>
+         <circle class="orbit-node delay-3" cx="80" cy="200" r="5" fill="#22d3ee" opacity="0.8"></circle>
+         <circle class="orbit-node delay-1" cx="320" cy="200" r="5" fill="#22d3ee" opacity="0.8"></circle>
+        </g>
+        <g class="atom-mid-rotate">
+         <circle cx="200" cy="200" r="80" fill="none" stroke="#22d3ee" stroke-width="1" opacity="0.4"></circle>
+         <circle class="orbit-node delay-2" cx="200" cy="120" r="5" fill="#a3e635" opacity="0.8"></circle>
+         <circle class="orbit-node delay-3" cx="200" cy="280" r="5" fill="#a3e635" opacity="0.8"></circle>
+         <circle class="orbit-node delay-1" cx="120" cy="200" r="5" fill="#22d3ee" opacity="0.8"></circle>
+         <circle class="orbit-node delay-2" cx="280" cy="200" r="5" fill="#22d3ee" opacity="0.8"></circle>
+        </g>
+        <circle class="atom-core-ring" cx="200" cy="200" r="40" fill="none" stroke="#facc15" stroke-width="2" opacity="0.6"></circle>
+        <circle class="atom-core-pulse" cx="200" cy="200" r="8" fill="#facc15"></circle>
+        <line x1="200" y1="80" x2="200" y2="120" stroke="#a3e635" stroke-width="1.5" opacity="0.7"></line>
+        <line x1="200" y1="280" x2="200" y2="320" stroke="#a3e635" stroke-width="1.5" opacity="0.7"></line>
+        <line x1="80" y1="200" x2="120" y2="200" stroke="#22d3ee" stroke-width="1.5" opacity="0.7"></line>
+        <line x1="280" y1="200" x2="320" y2="200" stroke="#22d3ee" stroke-width="1.5" opacity="0.7"></line>
+        <rect class="atom-rect-spin" x="155" y="155" width="90" height="90" rx="12" fill="none" stroke="#facc15" stroke-width="1.5" opacity="0.35" transform="rotate(45 200 200)"></rect>
+       </svg>
+      </div>
+     </div>
+    </div>
+   </section><!-- Trust strip -->
+   <section class="border-y border-[#1e293b] bg-[#0d1525]/50">
+    <div class="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+     <div class="flex items-center gap-2">
+      <i data-lucide="bar-chart-2" style="width:18px;height:18px" class="text-[#a3e635]"></i><span data-template-id="trust-1" class="canva-text text-sm" style="color: rgb(229, 231, 235); font-weight: 400; font-style: normal; font-size: 16px;">Clear progress tracking</span>
+     </div>
+     <div class="flex items-center gap-2">
+      <i data-lucide="sliders" style="width:18px;height:18px" class="text-[#22d3ee]"></i><span data-template-id="trust-2" class="canva-text text-sm" style="color: rgb(229, 231, 235); font-weight: 400; font-style: normal; font-size: 16px;">Simple wallet controls</span>
+     </div>
+     <div class="flex items-center gap-2">
+      <i data-lucide="shield" style="width:18px;height:18px" class="text-[#facc15]"></i><span data-template-id="trust-3" class="canva-text text-sm" style="color: rgb(229, 231, 235); font-weight: 400; font-style: normal; font-size: 16px;">Secure account settings</span>
+     </div>
+    </div>
+   </section><!-- Features -->
+   <section id="features" class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+     <h2 data-template-id="features-title" class="canva-text font-bold text-center" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">Everything you need in one place</h2>
+     <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div data-template-id="feat-1-card" class="canva-card feature-card border border-[#1e293b] rounded-2xl p-6" style="background: rgb(17, 24, 39);">
+       <div class="w-10 h-10 rounded-xl bg-lime-500/10 flex items-center justify-center mb-4">
+        <i data-lucide="activity" style="width:20px;height:20px" class="text-[#a3e635]"></i>
+       </div>
+       <h3 data-template-id="feat-1-title" class="canva-text font-semibold mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Real-time dashboard</h3>
+       <p data-template-id="feat-1-desc" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Monitor your mining progress with live metrics and clear visual summaries.</p>
+      </div>
+      <div data-template-id="feat-2-card" class="canva-card feature-card border border-[#1e293b] rounded-2xl p-6" style="background: rgb(17, 24, 39);">
+       <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
+        <i data-lucide="download" style="width:20px;height:20px" class="text-[#22d3ee]"></i>
+       </div>
+       <h3 data-template-id="feat-2-title" class="canva-text font-semibold mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Claim earnings</h3>
+       <p data-template-id="feat-2-desc" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Claim your mined value when you're ready — on your schedule.</p>
+      </div>
+      <div data-template-id="feat-3-card" class="canva-card feature-card border border-[#1e293b] rounded-2xl p-6" style="background: rgb(17, 24, 39);">
+       <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center mb-4">
+        <i data-lucide="wallet" style="width:20px;height:20px" class="text-[#facc15]"></i>
+       </div>
+       <h3 data-template-id="feat-3-title" class="canva-text font-semibold mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Unified wallet</h3>
+       <p data-template-id="feat-3-desc" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Manage balances, deposits, and withdrawals in a single wallet view.</p>
+      </div>
+      <div data-template-id="feat-4-card" class="canva-card feature-card border border-[#1e293b] rounded-2xl p-6" style="background: rgb(17, 24, 39);">
+       <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
+        <i data-lucide="settings" style="width:20px;height:20px" class="text-purple-400"></i>
+       </div>
+       <h3 data-template-id="feat-4-title" class="canva-text font-semibold mb-2" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Account controls</h3>
+       <p data-template-id="feat-4-desc" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Security, notifications, and preferences — all easy to configure.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- How it works -->
+   <section id="how-it-works" class="py-20 lg:py-28 bg-[#0d1525]/40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+     <h2 data-template-id="how-title" class="canva-text font-bold text-center" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">How it works</h2>
+     <div class="mt-14 grid md:grid-cols-3 gap-8 relative">
+      <div class="hidden md:block absolute top-10 left-[17%] right-[17%] h-px bg-gradient-to-r from-[#a3e635] via-[#22d3ee] to-[#facc15] opacity-30"></div>
+      <div class="text-center relative">
+       <div class="w-12 h-12 rounded-full bg-[#a3e635] text-[#0a0f1a] font-bold text-lg flex items-center justify-center mx-auto">
+        1
+       </div>
+       <h3 data-template-id="step-1-title" class="canva-text font-semibold mt-4" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Create your account</h3>
+       <p data-template-id="step-1-desc" class="canva-text text-sm mt-2" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Sign up in seconds and set up your profile.</p>
+      </div>
+      <div class="text-center relative">
+       <div class="w-12 h-12 rounded-full bg-[#22d3ee] text-[#0a0f1a] font-bold text-lg flex items-center justify-center mx-auto">
+        2
+       </div>
+       <h3 data-template-id="step-2-title" class="canva-text font-semibold mt-4" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Start earning</h3>
+       <p data-template-id="step-2-desc" class="canva-text text-sm mt-2" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Participate in mining and task activities.</p>
+      </div>
+      <div class="text-center relative">
+       <div class="w-12 h-12 rounded-full bg-[#facc15] text-[#0a0f1a] font-bold text-lg flex items-center justify-center mx-auto">
+        3
+       </div>
+       <h3 data-template-id="step-3-title" class="canva-text font-semibold mt-4" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 19px;">Track and claim earnings</h3>
+       <p data-template-id="step-3-desc" class="canva-text text-sm mt-2" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Watch your progress and claim when ready.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Activities & Earning Opportunities -->
+   <section class="py-20 lg:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+     <h2 data-template-id="activities-title" class="canva-text font-bold text-center" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">How you earn with ApexMine</h2>
+     <p data-template-id="activities-subtitle" class="canva-text text-center mt-3" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Mine crypto, complete reward tasks, and grow your digital earnings through a transparent, real-time system built for Africa's next wave of blockchain adoption.</p>
+     <div class="mt-12 grid md:grid-cols-2 gap-8">
+      <!-- Crypto Mining Card -->
+      <div data-template-id="activity-mining-card" class="border border-[#1e293b] rounded-2xl p-6 lg:p-8 bg-gradient-to-br from-[#111827] to-[#0d1525]">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-xl bg-[#a3e635]/10 flex items-center justify-center">
+         <i data-lucide="cpu" style="width:24px;height:24px" class="text-[#a3e635]"></i>
+        </div>
+        <h3 data-template-id="activity-mining-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 22px;">Crypto Mining</h3>
+       </div>
+       <p data-template-id="activity-mining-desc" class="canva-text mb-4" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Join our distributed crypto mining network and earn digital assets from verified mining operations. Track your hash rate, pending rewards, payout history, and mining performance in real time.</p>
+       <div class="space-y-3">
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#a3e635] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Automatic difficulty adjustment based on network conditions</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#a3e635] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Hourly payouts directly to your wallet</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#a3e635] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Transparent fee structure with detailed breakdowns</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#a3e635] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Scalable from casual miners to enterprise pools</span>
+        </div>
+       </div>
+      </div>
+      <!-- Task Completion Card -->
+      <div data-template-id="activity-tasks-card" class="border border-[#1e293b] rounded-2xl p-6 lg:p-8 bg-gradient-to-br from-[#111827] to-[#0d1525]">
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-xl bg-[#22d3ee]/10 flex items-center justify-center">
+         <i data-lucide="check-square" style="width:24px;height:24px" class="text-[#22d3ee]"></i>
+        </div>
+        <h3 data-template-id="activity-tasks-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 22px;">Task Activities</h3>
+       </div>
+       <p data-template-id="activity-tasks-desc" class="canva-text mb-4" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Earn bonus rewards by completing verified tasks such as referrals, validations, community engagement, and growth activities. These tasks stack with your mining rewards to increase your crypto earnings faster.</p>
+       <div class="space-y-3">
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#22d3ee] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Validation tasks for network security</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#22d3ee] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Content creation and referral bonuses</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#22d3ee] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Community engagement rewards</span>
+        </div>
+        <div class="flex items-start gap-2">
+         <i data-lucide="check" style="width:16px;height:16px" class="text-[#22d3ee] mt-1 shrink-0"></i>
+         <span class="text-sm text-gray-300">Daily challenges and achievement bonuses</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Dashboard Preview -->
+   <section class="py-20 lg:py-28 bg-[#0d1525]/40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+     <h2 data-template-id="preview-title" class="canva-text font-bold text-center" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">Your dashboard at a glance</h2>
+     <div class="mt-10 border border-[#1e293b] rounded-2xl bg-[#111827] p-6 lg:p-8">
+      <div class="grid sm:grid-cols-3 gap-4 mb-6">
+       <div class="bg-[#0d1525] rounded-xl p-4 border border-[#1e293b]">
+        <p class="text-xs text-gray-500">Total Balance</p>
+        <p class="text-xl font-bold text-white mt-1">0.4821 <span class="text-xs text-gray-500">BTC</span></p>
+       </div>
+       <div class="bg-[#0d1525] rounded-xl p-4 border border-[#1e293b]">
+        <p class="text-xs text-gray-500">Total Earned</p>
+        <p class="text-xl font-bold text-[#a3e635] mt-1">1.2340 <span class="text-xs text-gray-500">BTC</span></p>
+       </div>
+       <div class="bg-[#0d1525] rounded-xl p-4 border border-[#1e293b]">
+        <p class="text-xs text-gray-500">Total Withdrawn</p>
+        <p class="text-xl font-bold text-[#22d3ee] mt-1">0.7519 <span class="text-xs text-gray-500">BTC</span></p>
+       </div>
+      </div>
+      <div class="flex justify-center"><button class="px-8 py-3 rounded-xl bg-[#facc15] text-[#111827] font-bold text-sm hover:opacity-90">Claim Earnings</button>
+      </div>
+      <p class="text-center text-xs text-gray-500 mt-4">Dashboard preview</p>
+     </div>
+    </div>
+   </section><!-- About -->
+   <section id="about" class="py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+     <h2 data-template-id="about-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">About ApexMine</h2>
+     <p data-template-id="about-desc" class="canva-text mt-4" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">ApexMine is a crypto mining platform built to give miners a clear, unified view of their earnings. Monitor mining output, manage withdrawals, and track wallet activity from one secure dashboard.</p>
+    </div>
+   </section><!-- FAQ -->
+   <section id="faq" class="py-20 lg:py-28 bg-[#0d1525]/40">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+     <h2 data-template-id="faq-title" class="canva-text font-bold text-center" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">Frequently asked questions</h2>
+     <div class="mt-10 space-y-3" id="faq-list">
+      <div class="faq-item border border-[#1e293b] rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-expanded="false"> <span data-template-id="faq-q1" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 500; font-style: normal; font-size: 16px;">What is ApexMine?</span> <i data-lucide="chevron-down" style="width:18px;height:18px" class="faq-icon text-gray-400 shrink-0 ml-3"></i> </button>
+       <div class="faq-answer px-5 pb-4">
+        <p data-template-id="faq-a1" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">ApexMine is a crypto mining platform that helps you track mining rewards, manage your wallet, and claim earnings from one secure dashboard.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-[#1e293b] rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-expanded="false"> <span data-template-id="faq-q2" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 500; font-style: normal; font-size: 16px;">How do plans work?</span> <i data-lucide="chevron-down" style="width:18px;height:18px" class="faq-icon text-gray-400 shrink-0 ml-3"></i> </button>
+       <div class="faq-answer px-5 pb-4">
+        <p data-template-id="faq-a2" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Plans unlock higher mining capacity, faster reward processing, priority support, and advanced analytics to help you optimize your crypto earnings.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-[#1e293b] rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-expanded="false"> <span data-template-id="faq-q3" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 500; font-style: normal; font-size: 16px;">Where can I track earnings?</span> <i data-lucide="chevron-down" style="width:18px;height:18px" class="faq-icon text-gray-400 shrink-0 ml-3"></i> </button>
+       <div class="faq-answer px-5 pb-4">
+        <p data-template-id="faq-a3" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Your dashboard shows real-time mining balances, accumulated rewards, and completed withdrawals so you can monitor your crypto performance clearly.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-[#1e293b] rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between px-5 py-4 text-left text-sm font-medium text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#a3e635]" aria-expanded="false"> <span data-template-id="faq-q4" class="canva-text" style="color: rgb(255, 255, 255); font-weight: 500; font-style: normal; font-size: 16px;">How do I manage withdrawals?</span> <i data-lucide="chevron-down" style="width:18px;height:18px" class="faq-icon text-gray-400 shrink-0 ml-3"></i> </button>
+       <div class="faq-answer px-5 pb-4">
+        <p data-template-id="faq-a4" class="canva-text text-sm" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Go to the wallet section to review available crypto balances, initiate withdrawals, and track payout status securely and transparently.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA -->
+   <section class="py-20 lg:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+     <h2 data-template-id="cta-title" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px;">A clearer way to manage your mining journey.</h2>
+     <p data-template-id="cta-desc" class="canva-text mt-4" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 16px;">Join ApexMine to start earning from crypto mining, referrals, and reward-driven activities with a dashboard built for growth.</p>
+     <div class="mt-8 flex flex-wrap justify-center gap-4"><button data-template-id="cta-get-started" class="canva-button px-6 py-3 rounded-xl font-bold text-sm" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 16px;">Get started</button> <button onclick="openContactModal()" data-template-id="cta-contact" class="canva-button px-6 py-3 rounded-xl font-semibold text-sm border" style="background: transparent; color: rgb(163, 230, 53); font-weight: 600; font-style: normal; font-size: 16px;">Contact support</button>
+     </div>
+    </div>
+   </section>
+  </main><!-- Footer -->
+  <footer class="border-t border-[#1e293b] bg-[#0d1525]">
+   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
+    <div class="grid gap-12 lg:grid-cols-[1.2fr_1fr_1fr_1fr] pb-10 border-b border-[#1e293b]">
+     <div>
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center">
+        <i data-lucide="hexagon" style="width:18px;height:18px" class="text-[#0a0f1a]"></i>
+       </div>
+       <span class="font-bold text-xl text-white">ApexMineX</span>
+      </div>
+      <p class="max-w-sm text-base text-gray-300 leading-relaxed">Powering Africa's digital mining future — mobile first, secure, and built for every corner of the continent.</p>
+      <div class="flex items-center gap-3 mt-6">
+       <button class="w-10 h-10 rounded-full border border-[#1e293b] bg-[#111827] flex items-center justify-center text-gray-300 hover:text-white" aria-label="Instagram"><i data-lucide="instagram" style="width:16px;height:16px"></i></button>
+       <button class="w-10 h-10 rounded-full border border-[#1e293b] bg-[#111827] flex items-center justify-center text-gray-300 hover:text-white" aria-label="X"><i data-lucide="twitter" style="width:16px;height:16px"></i></button>
+       <button class="w-10 h-10 rounded-full border border-[#1e293b] bg-[#111827] flex items-center justify-center text-gray-300 hover:text-white" aria-label="LinkedIn"><i data-lucide="linkedin" style="width:16px;height:16px"></i></button>
+       <button class="w-10 h-10 rounded-full border border-[#1e293b] bg-[#111827] flex items-center justify-center text-gray-300 hover:text-white" aria-label="YouTube"><i data-lucide="play" style="width:16px;height:16px"></i></button>
+      </div>
+     </div>
+     <div>
+      <h3 class="text-xl font-semibold text-white mb-5">Product</h3>
+      <ul class="space-y-3 text-gray-400">
+       <li><a href="#" class="hover:text-white">Plans</a></li>
+       <li><a href="#features" class="hover:text-white">Features</a></li>
+       <li><a href="#" class="hover:text-white">Referral</a></li>
+       <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-xl font-semibold text-white mb-5">Company</h3>
+      <ul class="space-y-3 text-gray-400">
+       <li><a href="#" class="hover:text-white">Contact</a></li>
+       <li><a href="#" class="hover:text-white">Support</a></li>
+       <li><a href="#" class="hover:text-white">Login</a></li>
+       <li><a href="#" class="hover:text-white">Start Mining</a></li>
+      </ul>
+     </div>
+     <div>
+      <h3 class="text-xl font-semibold text-white mb-5">Legal</h3>
+      <ul class="space-y-3 text-gray-400">
+       <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+       <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+       <li><a href="#" class="hover:text-white">Risk Disclosure</a></li>
+       <li><a href="#" class="hover:text-white">Compliance</a></li>
+      </ul>
+     </div>
+    </div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 text-sm text-gray-500">
+     <p>© 2026 ApexMineX. All rights reserved.</p>
+     <div class="flex items-center gap-3">
+      <span class="text-gray-400">v1.1.0</span>
+      <span class="inline-flex items-center gap-2"><span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span> All systems operational</span>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <script src="/_sdk/fef09cb5f5b2424b.editing_sdk.js" integrity="sha512-PbmCvZWt+xecnQll4ofK5HTtTS+pGwwY1xn9+p49qHgEHml+uvyc0o1f2Eltkd4t324iwgnf7acUjfnKHkik1w=="></script>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+ 
+</body></html>

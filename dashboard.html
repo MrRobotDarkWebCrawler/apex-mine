@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260806-05-839f1a0","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFLd8sKbwc,2","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Libre Baskerville":"YACgEUFdPdA,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YADLjI9qxTA,0","Nunito":"YACgEX8C5Gg,0","Oleo Script":"YACgEQQ14jI,0","Phantom Sans":"YAHO2E8Pb88,0","Playfair Display":"YACgEYmuCJE,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YADWjpfPmdk,0","Raleway":"YACgEVg3xZg,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Ubuntu":"YACgERDU--Q,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YADlN8CFZ8Q,0","ui-sans-serif":"YACkoN-xg4g,0"}}');</script><script src="/_sdk/7949ff62d67710d5.telemetry_sdk.js" integrity="sha512-KIvXA82Di44YY/RH9/63A9MuTuavYgDFG8PfErJn7Wli4K0LAOk+coo/aPXk3+ZNL96nHh9VYD4PE+fLes+laQ=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApexMine Dashboard</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        :root {
+            --bg-primary: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-alt: #0d1525;
+            --accent-lime: #a3e635;
+            --accent-cyan: #22d3ee;
+            --accent-yellow: #facc15;
+            --border-color: #1e293b;
+        }
+        .glow-lime { box-shadow: 0 0 40px rgba(163,230,53,0.3), 0 0 80px rgba(163,230,53,0.1); }
+        .claim-btn { background: conic-gradient(from 0deg, #22d3ee, #a3e635, #22d3ee); }
+        .claim-btn-inner { background: radial-gradient(circle, #0f1a2e 60%, #132238 100%); }
+        .progress-track { background: #1e293b; }
+        .progress-fill { background: linear-gradient(90deg, #22d3ee, #a3e635); transition: width 0.3s; }
+        .nav-active { background: rgba(163,230,53,0.1); color: #a3e635; border-left: 3px solid #a3e635; }
+        .top-nav-active { color: #a3e635; border-bottom: 2px solid #a3e635; }
+        .toast-enter { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateY(-20px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+        .modal-overlay { background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+    </style>
+  <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
+  <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen text-gray-200" style="background: rgb(10, 15, 26);"><!-- Toast -->
+  <div id="toast" class="fixed top-4 right-4 z-50 hidden toast-enter">
+   <div class="bg-emerald-900 border border-emerald-500 rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg"><i data-lucide="check-circle" class="text-emerald-400" style="width:18px;height:18px;"></i> <span id="toast-msg" class="text-sm text-emerald-200"></span>
+   </div>
+  </div><!-- Upgrade Modal -->
+  <div id="upgrade-modal" class="fixed inset-0 z-40 hidden modal-overlay flex items-center justify-center p-4">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto"><button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="canva-text text-xl font-bold mb-6" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Select Your Plan</h2>
+    <div id="plans-container" class="space-y-3">
+     <!-- Plans will be inserted here by JavaScript -->
+    </div>
+   </div>
+  </div><!-- Mining Rigs Modal -->
+  <div id="mining-rigs-modal" class="fixed inset-0 z-40 hidden modal-overlay flex items-center justify-center p-4">
+   <div class="bg-[#111827] border border-[#1e293b] rounded-2xl max-w-3xl w-full p-6 relative max-h-[90vh] overflow-y-auto"><button onclick="closeMiningRigsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+    <h2 class="text-xl font-bold mb-6" style="color: rgb(255, 255, 255);">Mining Rigs</h2>
+    <div id="rigs-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+     <!-- Rigs will be inserted here by JavaScript -->
+    </div>
+   </div>
+  </div>
+  <div class="flex min-h-screen"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-60 border-r border-[#1e293b] bg-[#0d1525] p-4">
+    <div class="flex items-center gap-2 mb-8">
+     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-lime-400 flex items-center justify-center"><i data-lucide="hexagon" style="width:16px;height:16px;" class="text-[#0a0f1a]"></i>
+     </div><span data-template-id="brand-name" class="canva-text font-bold text-lg" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 15px;">ApexMine</span>
+    </div>
+    <nav class="flex-1 space-y-1" aria-label="Main navigation">
+    <a href="dashboard.html" class="nav-active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium">
+        <i data-lucide="layout-dashboard" style="width:18px;height:18px;"></i>Dashboard
+    </a>
+    <a href="tasks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="axe" style="width:18px;height:18px;"></i>Tasks
+    </a>
+    <a href="wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="wallet" style="width:18px;height:18px;"></i>Wallet
+    </a>
+    <a href="profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="user" style="width:18px;height:18px;"></i>Profile
+    </a>
+    <a href="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5">
+        <i data-lucide="settings" style="width:18px;height:18px;"></i>Settings
+    </a>
+</nav>
+    </nav>
+    <div class="border-t border-[#1e293b] pt-4 mt-4 flex items-center gap-3">
+     <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-xs font-bold text-white" data-user-initials>
+      TW
+     </div>
+     <div class="overflow-hidden">
+      <p class="text-sm font-medium text-white truncate" data-user-name>Terraim Wilson</p>
+      <p class="text-xs text-gray-500 truncate" data-user-email>terraim@mail.co...</p>
+     </div>
+    </div>
+   </aside><!-- Main -->
+   <div class="flex-1 flex flex-col min-w-0"><!-- Top Header -->
+    <header class="border-b border-[#1e293b] bg-[#0d1525] px-4 lg:px-6 py-3 flex items-center justify-between gap-4">
+     <div class="flex items-center gap-6"><button class="lg:hidden text-gray-300" onclick="document.getElementById('sidebar').classList.toggle('hidden')"><i data-lucide="menu" style="width:22px;height:22px;"></i></button>
+      <div class="hidden lg:flex items-center gap-1"><a href="dashboard.html" class="top-nav-active px-3 py-1.5 text-sm font-medium border-b-2">Dashboard</a> <a href="tasks.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Tasks</a> <a href="wallet.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Wallet</a> <a href="profile.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">Profile</a> <a href="aboutUs.html" class="px-3 py-1.5 text-sm text-gray-400 hover:text-white border-b-2 border-transparent">About Us</a>
+      </div>
+     </div><button class="relative text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/5" aria-label="Notifications"> <i data-lucide="bell" style="width:20px;height:20px;"></i> <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span> </button>
+    </header>
+    <main class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6"><!-- Page Title -->
+     <h1 data-template-id="page-heading" class="canva-text text-2xl font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 30px;">Dashboard</h1>
+     <!-- Metric Cards -->
+     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div data-template-id="card-balance" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="card-balance-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Total Balance</p>
+       <p id="balance-value" class="text-2xl font-bold text-white">$70.00</p>
+       <p data-template-id="card-balance-sub" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">USD equivalent</p>
+      </div>
+      <div data-template-id="card-earned" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="card-earned-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Total Earned</p>
+       <p id="earned-value" class="text-2xl font-bold text-white">$70.00</p>
+       <p data-template-id="card-earned-sub" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">Since sign up</p>
+      </div>
+      <div data-template-id="card-withdrawn" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <p data-template-id="card-withdrawn-label" class="canva-text text-xs uppercase tracking-wider mb-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Total Withdrawn</p>
+       <p class="text-2xl font-bold text-white">$0.00</p>
+       <p data-template-id="card-withdrawn-sub" class="canva-text text-xs mt-1" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">Lifetime</p>
+      </div>
+     </div><!-- Mining Panel + Plan -->
+     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4"><!-- Mining Panel -->
+      <div data-template-id="mining-panel" class="canva-card lg:col-span-2 rounded-xl p-6 border border-[#1e293b]" style="background: rgb(13, 21, 37);">
+       <div class="flex items-center justify-between mb-1">
+        <div>
+         <p class="text-xs text-[#a3e635] font-semibold uppercase tracking-wider">⛏ TAP-TO-MINE</p>
+         <h2 data-template-id="mining-heading" class="canva-text text-lg font-bold mt-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 23px;">Quick mining</h2>
+        </div>
+        <div class="text-right">
+         <p class="text-xs text-gray-400 uppercase">Lifetime Mined</p>
+         <p id="lifetime-mined" class="text-xl font-bold text-[#a3e635]">$50.00</p>
+        </div>
+       </div>
+       <p data-template-id="mining-helper" class="canva-text text-xs mb-6" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">Tap the logo every 6 hrs · +$5 per tap · unlimited taps</p><!-- Claim Button -->
+       <div class="flex flex-col items-center gap-4 my-4"><button id="claim-btn" onclick="handleClaim()" class="claim-btn w-36 h-36 rounded-full p-1 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-[#a3e635] focus:ring-offset-2 focus:ring-offset-[#111827]" aria-label="Claim mining reward">
+         <div class="claim-btn-inner w-full h-full rounded-full flex flex-col items-center justify-center gap-1"><i data-lucide="pickaxe" style="width:32px;height:32px;" class="text-[#a3e635]"></i> <span class="text-xs font-bold text-white uppercase">Claim</span>
+         </div></button>
+        <p class="text-sm text-gray-300"><span id="mined-amount" class="text-[#a3e635] font-bold">$5.00</span> mined</p>
+       </div><!-- Progress -->
+       <div class="mt-4">
+        <div class="flex justify-between text-xs text-gray-400 mb-1"><span>Cooldown</span> <span id="cooldown-label">Ready</span>
+        </div>
+        <div class="progress-track h-2 rounded-full overflow-hidden">
+         <div id="progress-bar" class="progress-fill h-full rounded-full" style="width:100%"></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 text-center">Unlimited taps · every 6 hrs</p>
+       </div>
+      </div><!-- Plan Card -->
+      <div data-template-id="plan-card" class="canva-card rounded-xl p-5 border border-[#1e293b] flex flex-col" style="background: rgb(17, 24, 39);">
+       <p class="text-xs text-gray-400 uppercase tracking-wider">Current Plan</p>
+       <h3 data-template-id="plan-name" class="canva-text text-lg font-bold mt-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Level 0 — Starter</h3>
+       <p data-template-id="plan-benefit" class="canva-text text-xs mt-1 flex-1" style="color: rgb(156, 163, 175); font-weight: 400; font-style: normal; font-size: 15px;">Upgrade to a higher plan to mine</p><button data-template-id="upgrade-btn" onclick="openModal()" class="canva-button mt-4 w-full py-2.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-yellow-400" style="background: rgb(250, 204, 21); color: rgb(17, 24, 39); font-weight: 700; font-style: normal; font-size: 15px;">Upgrade now</button>
+      </div>
+     </div><!-- Mining Rigs Card -->
+     <div class="canva-card rounded-xl p-5 border border-[#1e293b] flex items-center justify-between cursor-pointer hover:border-[#a3e635] transition-colors" style="background: rgb(17, 24, 39);" onclick="openMiningRigsModal()">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 rounded-full bg-[#1e293b] flex items-center justify-center">
+        <i data-lucide="cpu" style="width:20px;height:20px;" class="text-[#a3e635]"></i>
+       </div>
+       <div>
+        <p class="canva-text font-semibold text-sm" style="color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 15px;">Mining Rigs</p>
+        <p class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 15px;">Subscribe to boost earnings</p>
+       </div>
+      </div><button class="text-gray-400 hover:text-white"><i data-lucide="chevron-right" style="width:20px;height:20px;"></i></button>
+     </div><!-- Bottom Sections -->
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div data-template-id="transactions-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <h3 data-template-id="transactions-title" class="canva-text font-bold mb-3 flex items-center gap-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Recent transactions</h3>
+       <div id="recent-transactions-list" class="space-y-3">
+        <p class="text-sm text-gray-500 text-center py-4">No recent transactions</p>
+       </div>
+      </div>
+      <div data-template-id="notifications-card" class="canva-card rounded-xl p-5 border border-[#1e293b]" style="background: rgb(17, 24, 39);">
+       <h3 data-template-id="notifications-title" class="canva-text font-bold mb-3 flex items-center gap-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 18px;">Notifications</h3>
+       <p class="text-sm text-gray-500 text-center py-4">No new notifications</p>
+      </div>
+     </div>
+    </main>
+   </div>
+  </div>
+  <script src="/_sdk/fef09cb5f5b2424b.editing_sdk.js" integrity="sha512-PbmCvZWt+xecnQll4ofK5HTtTS+pGwwY1xn9+p49qHgEHml+uvyc0o1f2Eltkd4t324iwgnf7acUjfnKHkik1w=="></script>
+  <script src="js/earnings-system.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="shared-navbar.js"></script>
+  <script>
+        lucide.createIcons();
+
+        let cooldown = false;
+        let lastClaimTime = 0;
+
+        function getLiveUser() {
+            try {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+                if (currentUser && currentUser.email) return currentUser;
+            } catch (error) {
+                console.log('Missing currentUser for dashboard render');
+            }
+
+            const legacyUser = JSON.parse(localStorage.getItem('apexMineUser') || 'null');
+            if (legacyUser) return legacyUser;
+
+            return { balance: 0, totalEarned: 0, totalEarnings: 0, totalMined: 0, transactionHistory: [], welcomeBonusClaimed: false };
+        }
+
+        function ensureWelcomeBonusEntry(user) {
+            const history = Array.isArray(user.transactionHistory) ? user.transactionHistory : [];
+            const hasBonus = history.some(item => {
+                const label = String(item?.label || item?.description || '').toLowerCase();
+                return item?.type === 'bonus' || label.includes('welcome bonus');
+            });
+
+            if ((Number(user.balance || 0) >= 5 || Number(user.totalEarnings || user.totalEarned || 0) >= 5) && !hasBonus) {
+                const seeded = [{
+                    id: `TXN-${Date.now()}`,
+                    type: 'bonus',
+                    label: 'Welcome bonus',
+                    amount: 5,
+                    description: 'Welcome bonus applied on signup',
+                    date: new Date().toISOString(),
+                    status: 'Completed'
+                }, ...history];
+
+                user.transactionHistory = seeded;
+                user.welcomeBonusClaimed = true;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem('apexMineUser', JSON.stringify(user));
+            }
+
+            return user;
+        }
+
+        function renderRecentTransactionsList() {
+            const user = ensureWelcomeBonusEntry(getLiveUser());
+            const history = Array.isArray(user.transactionHistory) ? user.transactionHistory : [];
+            const list = document.getElementById('recent-transactions-list');
+            if (!list) return;
+
+            if (!history.length) {
+                list.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">No recent transactions</p>';
+                return;
+            }
+
+            list.innerHTML = history.slice(0, 5).map((item) => {
+                const amount = Number(item.amount || 0);
+                const positive = amount >= 0;
+                return `
+                    <div class="flex items-center justify-between text-sm">
+                     <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-full ${positive ? 'bg-emerald-900/50' : 'bg-red-900/50'} flex items-center justify-center">
+                       <i data-lucide="${positive ? 'plus' : 'minus'}" style="width:12px;height:12px;" class="${positive ? 'text-emerald-400' : 'text-red-400'}"></i>
+                      </div>
+                      <span class="text-gray-300">${item.label || 'Transaction'}</span>
+                     </div>
+                     <span class="${positive ? 'text-emerald-400' : 'text-red-400'} font-medium">${positive ? '+' : '-'}$${Math.abs(amount).toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function initializeDashboard() {
+            const user = getUser();
+            const subscription = getSubscriptionDetails();
+
+            if (!user || typeof user !== 'object') {
+                document.getElementById('balance-value').textContent = '$0.00';
+                document.getElementById('earned-value').textContent = '$0.00';
+                document.getElementById('lifetime-mined').textContent = '$0.00';
+                document.getElementById('mined-amount').textContent = '$0.00';
+                return;
+            }
+
+            const normalized = {
+                ...user,
+                balance: Number(user.balance || user.totalBalance || 0),
+                totalEarned: Number(user.totalEarned || user.totalEarnings || 0),
+                totalEarnings: Number(user.totalEarnings || user.totalEarned || 0),
+                totalMined: Number(user.totalMined || user.totalEarned || user.totalEarnings || 0),
+                transactionHistory: Array.isArray(user.transactionHistory) ? user.transactionHistory : []
+            };
+
+            saveUser(normalized);
+
+            document.getElementById('balance-value').textContent = `$${Number(normalized.balance).toFixed(2)}`;
+            document.getElementById('earned-value').textContent = `$${Number(normalized.totalEarned).toFixed(2)}`;
+            document.getElementById('lifetime-mined').textContent = `$${Number(normalized.totalMined).toFixed(2)}`;
+            document.getElementById('mined-amount').textContent = `$${Number(normalized.totalMined).toFixed(2)} mined`;
+            document.getElementById('plan-name-display').textContent = `Level ${normalized.level}`;
+            document.getElementById('plan-subtitle').textContent = subscription.miningAvailable 
+                ? `Mining active · Expected revenue: $${subscription.expectedMonthlyRevenue}/month`
+                : 'Mining begins at Level 1';
+            document.getElementById('plan-name').textContent = `Level ${normalized.level} — ${['Starter', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond'][normalized.level] || 'Premium'}`;
+            document.getElementById('plan-benefit').textContent = `$${subscription.taskEarnings}/task · $${calculateMiningEarningsPerClaim(normalized.level).toFixed(2)} per 6hrs`;
+            document.getElementById('referral-code').textContent = normalized.referralCode;
+            document.getElementById('referral-link').textContent = normalized.referralLink;
+            document.getElementById('referral-link').href = normalized.referralLink;
+            document.getElementById('referral-count').textContent = normalized.qualifiedReferrals;
+            document.getElementById('withdraw-requirement').textContent = 
+                `${withdrawalConditions.minReferrals} referrals + $${withdrawalConditions.minBalance} balance`;
+
+            renderRecentTransactionsList();
+        }
+
+        function handleClaim() {
+            if (cooldown) return;
+            
+            const result = claimMiningReward();
+            if (!result.success) {
+                showToast(result.message);
+                // If mining is not available due to subscription level, open upgrade modal
+                const user = getUser();
+                if (user.level < EARNINGS_CONFIG.miningStartsAtLevel) {
+                    renderPlansModal(user.level);
+                    document.getElementById('upgrade-modal').classList.remove('hidden');
+                    document.getElementById('upgrade-modal').classList.add('flex');
+                }
+                return;
+            }
+            
+            showToast(result.message);
+            
+            const user = getUser();
+            document.getElementById('balance-value').textContent = `$${user.balance.toFixed(2)}`;
+            document.getElementById('earned-value').textContent = `$${user.totalEarned.toFixed(2)}`;
+            document.getElementById('lifetime-mined').textContent = `$${user.totalMined.toFixed(2)}`;
+            
+            startCooldown();
+        }
+
+        function formatTime(seconds) {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function startCooldown() {
+            cooldown = true;
+            const btn = document.getElementById('claim-btn');
+            btn.style.opacity = '0.5';
+            btn.style.pointerEvents = 'none';
+            const bar = document.getElementById('progress-bar');
+            const label = document.getElementById('cooldown-label');
+            let seconds = 21600; // 6 hours
+            label.textContent = formatTime(seconds);
+            bar.style.width = '0%';
+
+            const interval = setInterval(() => {
+                seconds--;
+                const pct = ((21600 - seconds) / 21600) * 100;
+                bar.style.width = pct + '%';
+                label.textContent = seconds > 0 ? formatTime(seconds) : 'Ready';
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    cooldown = false;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                    bar.style.width = '100%';
+                }
+            }, 1000);
+        }
+
+        function openModal() {
+            const user = getUser();
+            renderPlansModal(user.level);
+            document.getElementById('upgrade-modal').classList.remove('hidden');
+            document.getElementById('upgrade-modal').classList.add('flex');
+        }
+        
+        function renderPlansModal(currentLevel) {
+            const container = document.getElementById('plans-container');
+            try {
+                // clear previous plans and show a loading placeholder
+                container.innerHTML = '<div id="plans-loading" class="p-4 text-sm text-gray-400">Loading plans…</div>';
+                container.style.display = 'block';
+                const planNames = ['Starter', 'Bronze', 'Silver', 'Gold', 'Platinum', 'Diamond'];
+
+                // adjust container classes without clobbering other layout helpers
+                container.classList.remove('space-y-3');
+                container.classList.remove('grid');
+                container.classList.remove('grid-cols-1');
+                container.classList.remove('md:grid-cols-2');
+                container.classList.remove('gap-4');
+                container.classList.add(currentLevel === 0 ? 'grid' : 'space-y-3');
+                if (currentLevel === 0) container.classList.add('grid-cols-1', 'md:grid-cols-2', 'gap-4');
+
+                for (let level = 0; level <= 5; level++) {
+                    const subscription = {
+                        level: level,
+                        cost: EARNINGS_CONFIG.subscriptionCost[level],
+                        taskEarnings: EARNINGS_CONFIG.taskEarnings[level],
+                        referralEarnings: EARNINGS_CONFIG.referralEarnings[level],
+                        dailyBonus: EARNINGS_CONFIG.dailyLoginBonus[level],
+                        monthlyRevenue: EARNINGS_CONFIG.expectedMonthlyRevenue[level],
+                        miningEarnings: calculateMiningEarningsPerClaim(level),
+                        conditions: EARNINGS_CONFIG.withdrawalConditions[level]
+                    };
+
+                    const isCurrent = level === currentLevel;
+                    const isUpgrade = level > currentLevel;
+
+                    const miningStatus = level >= 1 ? `✓ $${subscription.miningEarnings.toFixed(2)}/6hrs` : '✗ N/A';
+
+                    const planCard = document.createElement('div');
+                    planCard.className = `rounded-xl overflow-hidden border p-3 ${isCurrent ? 'border-[#a3e635] bg-[#0d1525]' : 'border-[#1e293b] hover:border-[#a3e635]'}`;
+                    planCard.id = `plan-${level}`;
+
+                    planCard.innerHTML = `
+                        <div class="cursor-pointer p-3" onclick="togglePlanDetails(${level})">
+                            <div class="flex items-center justify-between gap-3">
+                                <div class="flex-1 min-w-0">
+                                    <h3 class="text-sm font-bold text-white truncate">Level ${level} — ${planNames[level]}</h3>
+                                    <p class="text-xs text-gray-400 mt-1">Cost: <span class="text-white font-bold">$${subscription.cost}</span> · Mining: <span class="text-[#a3e635] font-bold">${miningStatus}</span></p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    ${isCurrent ? '<span class="inline-block px-3 py-1 bg-[#a3e635] text-[#0a0f1a] text-xs font-bold rounded">CURRENT</span>' : isUpgrade ? `<span class="inline-block px-3 py-1 bg-[#22d3ee] text-[#0a0f1a] text-xs font-bold rounded">UPGRADE</span>` : '<span class="inline-block px-3 py-1 bg-gray-700 text-gray-300 text-xs font-bold rounded">LOCKED</span>'}
+                                    <i data-lucide="chevron-down" class="expand-icon transition-transform" style="width:18px;height:18px;color:#a3e635;"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plan-details hidden bg-[#0f1723] border-t border-[#1e293b] p-3 text-xs">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div><p class="text-gray-400">Per Task</p><p class="text-white font-bold">$${subscription.taskEarnings.toFixed(2)}</p></div>
+                                <div><p class="text-gray-400">Per Referral</p><p class="text-white font-bold">$${subscription.referralEarnings.toFixed(2)}</p></div>
+                                <div><p class="text-gray-400">Daily Bonus</p><p class="text-white font-bold">$${subscription.dailyBonus.toFixed(4)}</p></div>
+                                <div><p class="text-gray-400">Mining (6hrs)</p><p class="text-white font-bold">${miningStatus}</p></div>
+                            </div>
+                            <div class="mt-3">
+                                ${isCurrent ? '<button class="w-full py-2 rounded-lg bg-[#1e293b] text-gray-400 font-semibold text-sm">Your Current Plan</button>' : isUpgrade ? `<button id="upgrade-btn-${level}" onclick="performUpgrade(${level})" class="w-full py-2 rounded-lg bg-[#a3e635] text-[#0a0f1a] font-semibold text-sm hover:opacity-90">Upgrade for $${subscription.cost}</button>` : '<button class="w-full py-2 rounded-lg bg-gray-700 text-gray-400 font-semibold text-sm cursor-default">Cannot Downgrade</button>'}
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(planCard);
+                }
+                // remove loading placeholder if present
+                const loading = document.getElementById('plans-loading');
+                if (loading) loading.remove();
+
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+
+                // If level 0, focus the first upgrade button to make upgrade obvious
+                if (currentLevel === 0) {
+                    setTimeout(() => {
+                        const btn = document.querySelector('[id^="upgrade-btn-"]');
+                        if (btn) btn.focus();
+                    }, 80);
+                }
+                // Fallback: if nothing rendered (DOM restrictions), inject a static set
+                if (container.childElementCount === 0) {
+                    container.innerHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="rounded-xl border p-3">
+                                <h3 class="text-sm font-bold text-white">Level 1 — Starter</h3>
+                                <p class="text-xs text-gray-400 mt-2">Cost: <strong>$10</strong></p>
+                                <button onclick="performUpgrade(1)" class="mt-3 w-full py-2 rounded-lg bg-[#a3e635] text-[#0a0f1a] font-semibold">Upgrade for $10</button>
+                            </div>
+                            <div class="rounded-xl border p-3">
+                                <h3 class="text-sm font-bold text-white">Level 2 — Bronze</h3>
+                                <p class="text-xs text-gray-400 mt-2">Cost: <strong>$15</strong></p>
+                                <button onclick="performUpgrade(2)" class="mt-3 w-full py-2 rounded-lg bg-[#a3e635] text-[#0a0f1a] font-semibold">Upgrade for $15</button>
+                            </div>
+                        </div>`;
+                }
+            } catch (err) {
+                console.error('Failed rendering plans modal', err);
+                container.innerHTML = `<div class="p-4 text-sm text-red-400">Unable to load plans. Please refresh the page.</div>`;
+            }
+        }
+        
+        function togglePlanDetails(level) {
+            const card = document.getElementById(`plan-${level}`);
+            const details = card.querySelector('.plan-details');
+            const icon = card.querySelector('.expand-icon');
+            
+            details.classList.toggle('hidden');
+            icon.style.transform = details.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+        
+        function performUpgrade(level) {
+            const user = getUser();
+            if (level <= user.level) {
+                showToast('This is not an upgrade. You can only upgrade to higher levels.');
+                return;
+            }
+            
+            const result = upgradeSubscription(level);
+            if (result.success) {
+                showToast(result.message);
+                closeModal();
+                setTimeout(() => {
+                    initializeDashboard();
+                }, 500);
+            } else {
+                showToast(result.message);
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('upgrade-modal').classList.add('hidden');
+            document.getElementById('upgrade-modal').classList.remove('flex');
+        }
+        
+        function openMiningRigsModal() {
+            const user = getUser();
+            renderMiningRigs(user.level, user.activeMiningRigs || []);
+            document.getElementById('mining-rigs-modal').classList.remove('hidden');
+            document.getElementById('mining-rigs-modal').classList.add('flex');
+        }
+        
+        function closeMiningRigsModal() {
+            document.getElementById('mining-rigs-modal').classList.add('hidden');
+            document.getElementById('mining-rigs-modal').classList.remove('flex');
+        }
+        
+        function renderMiningRigs(userLevel, activatedRigs) {
+            const container = document.getElementById('rigs-container');
+            container.innerHTML = '';
+            
+            const rigs = EARNINGS_CONFIG.miningRigs;
+            
+            Object.keys(rigs).forEach(rigName => {
+                const rig = rigs[rigName];
+                const isAvailable = userLevel >= rig.level;
+                const isActivated = activatedRigs.includes(rigName);
+                
+                const rigCard = document.createElement('div');
+                rigCard.className = `border ${isActivated ? 'border-[#a3e635] bg-[#0d1525]' : 'border-[#1e293b]'} rounded-xl p-4`;
+                
+                rigCard.innerHTML = `
+                    <div class="flex items-start justify-between mb-3">
+                        <div>
+                            <h3 class="text-sm font-bold text-white">${rigName}</h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Level ${rig.level}+ · $${rig.cost}/month</p>
+                        </div>
+                        ${isActivated ? '<span class="inline-block px-2 py-1 bg-[#a3e635] text-[#0a0f1a] text-xs font-bold rounded">ACTIVE</span>' : ''}
+                    </div>
+                    
+                    <div class="mb-3 text-xs text-gray-400 space-y-1">
+                        <p>Efficiency: <span class="text-white font-bold">${rig.efficiency}x</span></p>
+                        <p>Daily Earnings: <span class="text-white font-bold">$${rig.dailyEarnings}</span></p>
+                    </div>
+                    
+                    ${!isAvailable 
+                        ? '<button class="w-full py-1.5 rounded-lg bg-gray-700 text-gray-500 font-semibold text-xs cursor-default">Unlock at Level ' + rig.level + '</button>'
+                        : isActivated
+                        ? '<button class="w-full py-1.5 rounded-lg bg-[#1e293b] text-gray-400 font-semibold text-xs cursor-default opacity-50">Subscribed</button>'
+                        : `<button onclick="subscribeToRig('${rigName}', ${rig.cost})" class="w-full py-1.5 rounded-lg bg-[#a3e635] text-[#0a0f1a] font-semibold text-xs hover:opacity-90">Subscribe - $${rig.cost}</button>`
+                    }
+                `;
+                
+                container.appendChild(rigCard);
+            });
+            
+            lucide.createIcons();
+        }
+        
+        function subscribeToRig(rigName, cost) {
+            if (typeof enforceAuthentication === 'function' && !enforceAuthentication()) { redirectToLogin(); return; }
+            const user = getUser();
+
+            if (user.balance < cost) {
+                showToast('Insufficient balance to subscribe to this rig');
+                return;
+            }
+            
+            if (!user.activeMiningRigs) {
+                user.activeMiningRigs = [];
+            }
+            
+            if (!user.activeMiningRigs.includes(rigName)) {
+                user.activeMiningRigs.push(rigName);
+                user.balance -= cost;
+                user.totalSpent = (user.totalSpent || 0) + cost;
+                saveUser(user);
+                showToast(`Subscribed to ${rigName}!`);
+                renderMiningRigs(user.level, user.activeMiningRigs);
+                initializeDashboard();
+            }
+        }
+        
+        document.getElementById('upgrade-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+        
+        document.getElementById('mining-rigs-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeMiningRigsModal();
+        });
+        
+        window.addEventListener('user-state-updated', () => {
+            initializeDashboard();
+            renderRecentTransactionsList();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            renderRecentTransactionsList();
+            lucide.createIcons();
+        });
+    </script>
+ 
+</body></html>

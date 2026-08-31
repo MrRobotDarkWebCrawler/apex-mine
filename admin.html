@@ -1,0 +1,664 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <title>Admin - ApexMine</title>
+        <link rel="stylesheet" href="styles.css" />
+        <style>
+            /* Admin page local styles (self-contained) */
+            :root { --bg:#0d1525; --card:#111827; --muted:#9ca3af; --accent:#a3e635; --panel-border:#1e293b; --glass:rgba(255,255,255,0.02); }
+            html,body{height:100%;margin:0;font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); color:#e6eef6}
+            .app-shell{max-width:1200px;margin:24px auto;padding:20px;box-sizing:border-box}
+            .brand{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+            .brand-icon{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#06b6d4,#a3e635);display:flex;align-items:center;justify-content:center;color:#061016}
+            .brand-title{font-weight:700;font-size:20px}
+            .brand-subtitle{font-size:12px;color:var(--muted)}
+            .back-link{display:inline-block;margin:4px 0 18px;color:var(--muted);text-decoration:none}
+
+            .page-header h1{margin:0;font-size:22px}
+            .page-header p{color:var(--muted);margin-top:6px}
+
+            .admin-panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--panel-border);padding:18px;border-radius:12px;margin-bottom:18px}
+            .admin-panel h2{margin:0 0 8px 0}
+            .admin-panel p{color:var(--muted);margin-bottom:12px}
+
+            .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+            .form-field{display:flex;flex-direction:column}
+            .form-field label{font-size:13px;margin-bottom:6px;color:var(--muted)}
+            .form-field input,.form-field select{background:var(--card);border:1px solid var(--panel-border);padding:10px;border-radius:8px;color:#edf2f7}
+            .form-field input::placeholder{color:rgba(255,255,255,0.12)}
+
+            .admin-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+            .btn-save,.btn-reset{padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+            .btn-save{background:var(--accent);color:#071617;font-weight:700}
+            .btn-reset{background:transparent;border:1px solid var(--panel-border);color:var(--muted)}
+
+            .rig-list{margin-top:14px}
+            .rig-table{width:100%;border-collapse:collapse;margin-top:8px}
+            .rig-table th,.rig-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--panel-border);font-size:14px;color:#dbeafe}
+            .rig-table thead th{color:var(--muted);font-size:12px}
+            .rig-table button{background:transparent;border:1px solid var(--panel-border);color:var(--muted);padding:6px 8px;border-radius:8px;cursor:pointer}
+
+            .feedback{color:var(--accent);font-weight:600}
+
+            @media (max-width:600px){
+                .app-shell{padding:12px}
+                .brand-title{font-size:18px}
+            }
+        </style>
+</head>
+<body>
+    <div class="app-shell">
+        <div class="brand">
+            <div class="brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 8 L12 52 H52 Z" fill="currentColor" />
+                    <path d="M32 20 L22 40 H42 Z" fill="rgba(12,47,18,0.9)" />
+                </svg>
+            </div>
+            <div class="brand-copy">
+                <div class="brand-title">ApexMine</div>
+                <div class="brand-subtitle">Admin & rig management</div>
+            </div>
+        </div>
+        <a href="index.html" class="back-link">? Back to Dashboard</a>
+
+        <section class="page-header">
+            <h1>Admin Control Panel</h1>
+            <p>Use this page to manage dashboard content and add new rigs. Rigs saved here will appear on the user dashboard after refresh.</p>
+        </section>
+
+        <section class="admin-panel">
+            <h2>Withdrawal Manager</h2>
+            <p>Control global withdrawal access and schedule when each user level can request payouts to reduce server load and avoid overload periods.</p>
+            <form id="withdrawalForm" class="rig-form">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="withdrawalsEnabledInput">Withdrawals Enabled</label>
+                        <select id="withdrawalsEnabledInput">
+                            <option value="true">Enabled</option>
+                            <option value="false">Disabled</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="minimumWithdrawalInput">Minimum Withdrawal ($)</label>
+                        <input id="minimumWithdrawalInput" type="number" step="0.01" min="0" placeholder="10" />
+                    </div>
+                    <div class="form-field">
+                        <label for="dailyWithdrawalLimitInput">Daily withdrawal limit ($)</label>
+                        <input id="dailyWithdrawalLimitInput" type="number" step="0.01" min="0" placeholder="1000" />
+                    </div>
+                    <div class="form-field">
+                        <label for="processingHoursInput">Processing window (hours)</label>
+                        <input id="processingHoursInput" type="number" min="1" placeholder="24" />
+                    </div>
+                </div>
+
+                <div class="rig-list">
+                    <h2>Level Withdrawal Schedule</h2>
+                    <div class="form-grid" id="withdrawalScheduleGrid">
+                        <div class="form-field">
+                            <label for="level1EnabledInput">Level 1</label>
+                            <select id="level1EnabledInput"><option value="true">Enabled</option><option value="false">Disabled</option></select>
+                            <select id="level1FrequencyInput" style="margin-top:8px;"><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="off">Off</option></select>
+                            <select id="level1DayInput" style="margin-top:8px;"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+                            <input id="level1TimeInput" type="time" value="09:00" style="margin-top:8px;" />
+                        </div>
+                        <div class="form-field">
+                            <label for="level2EnabledInput">Level 2</label>
+                            <select id="level2EnabledInput"><option value="true">Enabled</option><option value="false">Disabled</option></select>
+                            <select id="level2FrequencyInput" style="margin-top:8px;"><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="off">Off</option></select>
+                            <select id="level2DayInput" style="margin-top:8px;"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+                            <input id="level2TimeInput" type="time" value="09:00" style="margin-top:8px;" />
+                        </div>
+                        <div class="form-field">
+                            <label for="level3EnabledInput">Level 3</label>
+                            <select id="level3EnabledInput"><option value="true">Enabled</option><option value="false">Disabled</option></select>
+                            <select id="level3FrequencyInput" style="margin-top:8px;"><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="off">Off</option></select>
+                            <select id="level3DayInput" style="margin-top:8px;"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+                            <input id="level3TimeInput" type="time" value="09:00" style="margin-top:8px;" />
+                        </div>
+                        <div class="form-field">
+                            <label for="level4EnabledInput">Level 4</label>
+                            <select id="level4EnabledInput"><option value="true">Enabled</option><option value="false">Disabled</option></select>
+                            <select id="level4FrequencyInput" style="margin-top:8px;"><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="off">Off</option></select>
+                            <select id="level4DayInput" style="margin-top:8px;"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+                            <input id="level4TimeInput" type="time" value="09:00" style="margin-top:8px;" />
+                        </div>
+                        <div class="form-field">
+                            <label for="level5EnabledInput">Level 5</label>
+                            <select id="level5EnabledInput"><option value="true">Enabled</option><option value="false">Disabled</option></select>
+                            <select id="level5FrequencyInput" style="margin-top:8px;"><option value="weekly">Weekly</option><option value="daily">Daily</option><option value="off">Off</option></select>
+                            <select id="level5DayInput" style="margin-top:8px;"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+                            <input id="level5TimeInput" type="time" value="09:00" style="margin-top:8px;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-actions">
+                    <button type="button" class="btn-reset" id="resetWithdrawalsBtn">Reset</button>
+                    <button type="submit" class="btn-save">Save withdrawal settings</button>
+                </div>
+                <p class="feedback hidden" id="withdrawalFeedback"></p>
+            </form>
+        </section>
+
+        <section class="admin-panel">
+            <h2>Dashboard Rig Manager</h2>
+            <p>Add new rigs that will be available on the dashboard. Each rig should match the level-based model used by the app: Level 1 unlocks Alpha Rig, Level 2 unlocks Alpha Rig Pro and Beta Rig, and so on.</p>
+            <form id="rigForm" class="rig-form">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="rigNameInput">Rig Name</label>
+                        <input id="rigNameInput" type="text" placeholder="Alpha Rig Pro" />
+                    </div>
+                    <div class="form-field">
+                        <label for="rigLevelInput">Required Level</label>
+                        <select id="rigLevelInput">
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>
+                            <option value="4">Level 4</option>
+                            <option value="5">Level 5</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="rigSubscriptionInput">Subscription Price ($)</label>
+                        <input id="rigSubscriptionInput" type="number" step="0.01" min="0" placeholder="15" />
+                    </div>
+                    <div class="form-field">
+                        <label for="rigCycleInput">Cycle (days)</label>
+                        <input id="rigCycleInput" type="number" min="1" placeholder="100" />
+                    </div>
+                    <div class="form-field">
+                        <label for="rigDailyRevenueInput">Daily Revenue ($)</label>
+                        <input id="rigDailyRevenueInput" type="number" step="0.01" min="0" placeholder="1.00" />
+                    </div>
+                    <div class="form-field">
+                        <label for="rigTotalRevenueInput">Total Revenue ($)</label>
+                        <input id="rigTotalRevenueInput" type="number" step="0.01" min="0" placeholder="100" />
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <button type="submit" class="btn-save">Add Rig</button>
+                </div>
+                <p class="feedback hidden" id="rigFeedback"></p>
+            </form>
+
+            <div class="rig-list">
+                <h2>Current Dashboard Rigs</h2>
+                <table class="rig-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Level</th>
+                            <th>Subscription ($)</th>
+                            <th>Daily Revenue ($)</th>
+                            <th>Cycle</th>
+                            <th>Total Revenue ($)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="rigTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="admin-panel">
+            <h2>Task Manager</h2>
+            <p>Add or update tasks that should appear on the user tasks page, and keep the platform links used by the tasks in one place.</p>
+            <form id="taskForm" class="rig-form">
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label for="taskTitleInput">Task Title</label>
+                        <input id="taskTitleInput" type="text" placeholder="Watch demo video" />
+                    </div>
+                    <div class="form-field">
+                        <label for="taskPlatformInput">Platform</label>
+                        <select id="taskPlatformInput">
+                            <option value="tiktok">TikTok</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="instagram">Instagram</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="taskTypeInput">Type</label>
+                        <select id="taskTypeInput">
+                            <option value="watch">Watch</option>
+                            <option value="like">Like</option>
+                            <option value="comment">Comment</option>
+                            <option value="follow">Follow</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="taskRewardInput">Reward (¢)</label>
+                        <input id="taskRewardInput" type="number" min="1" placeholder="5" />
+                    </div>
+                    <div class="form-field" style="grid-column: 1 / -1;">
+                        <label for="taskDescInput">Description</label>
+                        <input id="taskDescInput" type="text" placeholder="Describe what the user must do for this task" />
+                    </div>
+                    <div id="taskVideoUrlField" class="form-field" style="grid-column: 1 / -1;">
+                        <label for="taskVideoUrlInput">Video URL</label>
+                        <input id="taskVideoUrlInput" type="url" placeholder="https://www.youtube.com/watch?v=..." />
+                    </div>
+                    <div id="taskAccountUrlField" class="form-field" style="grid-column: 1 / -1; display: none;">
+                        <label for="taskAccountUrlInput">Account / Channel URL</label>
+                        <input id="taskAccountUrlInput" type="url" placeholder="https://www.tiktok.com/@username or https://www.youtube.com/@channel" />
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <button type="button" class="btn-reset" id="resetAdmin">Reset</button>
+                    <button type="submit" class="btn-save">Add Task</button>
+                </div>
+                <p class="feedback hidden" id="taskFeedback"></p>
+            </form>
+
+            <div class="rig-list">
+                <h2>Current Tasks</h2>
+                <table class="rig-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Platform</th>
+                            <th>Type</th>
+                            <th>Reward</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const defaultConfig = {
+            tiktokFollowHandle: "@tiktok_user",
+            tiktokFollowUrl: "https://www.tiktok.com/@tiktok_user",
+            youtubeFollowHandle: "Channel Name",
+            youtubeFollowUrl: "https://www.youtube.com/channel/UCXXXXXXXXX",
+            instagramFollowHandle: "@instagram_user",
+            instagramFollowUrl: "https://www.instagram.com/instagram_user",
+            tiktokWatchUrl: "https://www.tiktok.com/@tiktok_user/video/1234567890",
+            youtubeWatchUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            instagramWatchUrl: "https://www.instagram.com/p/XXXXXXXXX/",
+        };
+
+        const defaultWithdrawalSettings = {
+            enabled: true,
+            minimumWithdrawal: 10,
+            dailyLimit: 1000,
+            processingWindowHours: 24,
+            scheduleByLevel: {
+                1: { enabled: true, frequency: 'weekly', day: 'Monday', time: '09:00' },
+                2: { enabled: true, frequency: 'weekly', day: 'Tuesday', time: '09:00' },
+                3: { enabled: true, frequency: 'weekly', day: 'Wednesday', time: '09:00' },
+                4: { enabled: true, frequency: 'weekly', day: 'Thursday', time: '09:00' },
+                5: { enabled: true, frequency: 'weekly', day: 'Friday', time: '09:00' }
+            }
+        };
+
+        const withdrawalStorageKey = "dashboardWithdrawalSettings";
+        const rigStorageKey = "dashboardRigs";
+        const taskStorageKey = "dashboardTasks";
+        const defaultRigs = [
+            { name: "Alpha Rig", subscription: 10, daily: 0.75, cycle: 100, total: 75, levelRequired: 1 },
+            { name: "Alpha Rig Pro", subscription: 15, daily: 1.0, cycle: 100, total: 100, levelRequired: 2 },
+            { name: "Beta Rig", subscription: 25, daily: 1.3, cycle: 90, total: 125, levelRequired: 2 },
+            { name: "Beta Rig Pro", subscription: 30, daily: 1.67, cycle: 90, total: 150, levelRequired: 3 },
+            { name: "Gamma Rig", subscription: 50, daily: 5.0, cycle: 60, total: 300, levelRequired: 3 },
+            { name: "Gamma Rig Pro", subscription: 75, daily: 8.33, cycle: 60, total: 500, levelRequired: 4 },
+            { name: "Delta Rig", subscription: 100, daily: 16.67, cycle: 45, total: 750, levelRequired: 5 },
+            { name: "Delta Rig Pro", subscription: 150, daily: 22.22, cycle: 45, total: 1000, levelRequired: 5 }
+        ];
+        const defaultTasks = [
+            {id:1, platform:'tiktok', type:'watch', title:'Watch TikTok dance clip', desc:'Watch a 30-second dance video and keep it open for a moment.', reward:5, effort:'30s', status:'available'},
+            {id:2, platform:'youtube', type:'like', title:'Like YouTube tutorial', desc:'Like a short tech tutorial to support the creator.', reward:3, effort:'10s', status:'available'},
+            {id:3, platform:'instagram', type:'comment', title:'Comment on travel reel', desc:'Leave a genuine comment on a travel reel.', reward:8, effort:'1 min', status:'available'},
+            {id:4, platform:'tiktok', type:'follow', title:'Follow creator account', desc:'Follow @dancequeen and keep the profile active.', reward:10, effort:'15s', status:'available'},
+            {id:5, platform:'youtube', type:'watch', title:'Watch product review', desc:'Watch a 45-second product review before finishing.', reward:6, effort:'45s', status:'available'},
+            {id:6, platform:'instagram', type:'like', title:'Like a fitness post', desc:'Like a fresh workout post and move on.', reward:4, effort:'10s', status:'available'},
+            {id:7, platform:'tiktok', type:'comment', title:'Reply on cooking tutorial', desc:'Leave a helpful comment on a cooking tutorial.', reward:9, effort:'1 min', status:'in-progress'},
+            {id:8, platform:'instagram', type:'follow', title:'Follow fitness page', desc:'Follow a health and wellness account for a quick win.', reward:12, effort:'15s', status:'claimable'},
+            {id:9, platform:'youtube', type:'watch', title:'Watch YouTube short', desc:'Watch a 60-second cooking short and enjoy it.', reward:5, effort:'1 min', status:'completed'},
+            {id:10, platform:'instagram', type:'like', title:'Like fashion photo', desc:'Like a recent fashion photo post from a creator.', reward:3, effort:'10s', status:'completed'},
+            {id:11, platform:'youtube', type:'follow', title:'Subscribe to gaming channel', desc:'Subscribe to a gaming creator for a bigger reward.', reward:12, effort:'20s', status:'locked', lockReason:'Complete 3 tasks first'},
+            {id:12, platform:'tiktok', type:'comment', title:'Comment on music clip', desc:'Comment on a trending music clip with a short reply.', reward:8, effort:'1 min', status:'locked', lockReason:'Reach level 2'},
+            {id:13, platform:'instagram', type:'watch', title:'Watch reel story', desc:'Watch a short reel to finish the task cycle.', reward:5, effort:'30s', status:'available'},
+            {id:14, platform:'youtube', type:'comment', title:'Comment on DIY video', desc:'Share a quick thoughtful comment on a DIY video.', reward:7, effort:'1 min', status:'available'}
+        ];
+
+        const state = JSON.parse(localStorage.getItem("dashboardAdmin")) || defaultConfig;
+
+        const elements = {
+            resetAdmin: document.getElementById("resetAdmin"),
+            withdrawalForm: document.getElementById("withdrawalForm"),
+            withdrawalFeedback: document.getElementById("withdrawalFeedback"),
+            rigForm: document.getElementById("rigForm"),
+            rigFeedback: document.getElementById("rigFeedback"),
+            rigTableBody: document.getElementById("rigTableBody"),
+            taskForm: document.getElementById("taskForm"),
+            taskFeedback: document.getElementById("taskFeedback"),
+            taskTableBody: document.getElementById("taskTableBody")
+        };
+
+        function populateAdminForm(config) {
+            document.getElementById("tiktokFollowHandleInput").value = config.tiktokFollowHandle;
+            document.getElementById("tiktokFollowUrlInput").value = config.tiktokFollowUrl;
+            document.getElementById("youtubeFollowHandleInput").value = config.youtubeFollowHandle;
+            document.getElementById("youtubeFollowUrlInput").value = config.youtubeFollowUrl;
+            document.getElementById("instagramFollowHandleInput").value = config.instagramFollowHandle;
+            document.getElementById("instagramFollowUrlInput").value = config.instagramFollowUrl;
+            document.getElementById("tiktokWatchUrlInput").value = config.tiktokWatchUrl;
+            document.getElementById("youtubeWatchUrlInput").value = config.youtubeWatchUrl;
+            document.getElementById("instagramWatchUrlInput").value = config.instagramWatchUrl;
+        }
+
+        function saveConfig(config) {
+            localStorage.setItem("dashboardAdmin", JSON.stringify(config));
+        }
+
+        function getWithdrawalSettings() {
+            const stored = JSON.parse(localStorage.getItem(withdrawalStorageKey));
+            if (!stored) return defaultWithdrawalSettings;
+            return {
+                ...defaultWithdrawalSettings,
+                ...stored,
+                scheduleByLevel: {
+                    ...defaultWithdrawalSettings.scheduleByLevel,
+                    ...(stored.scheduleByLevel || {})
+                }
+            };
+        }
+
+        function saveWithdrawalSettings(settings) {
+            localStorage.setItem(withdrawalStorageKey, JSON.stringify(settings));
+            fetch('http://localhost:3000/api/withdrawal-settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(settings)
+            }).catch(() => {});
+        }
+
+        function populateWithdrawalForm(settings) {
+            document.getElementById("withdrawalsEnabledInput").value = String(Boolean(settings.enabled));
+            document.getElementById("minimumWithdrawalInput").value = settings.minimumWithdrawal;
+            document.getElementById("dailyWithdrawalLimitInput").value = settings.dailyLimit;
+            document.getElementById("processingHoursInput").value = settings.processingWindowHours;
+
+            [1,2,3,4,5].forEach((level) => {
+                const cfg = settings.scheduleByLevel?.[level] || defaultWithdrawalSettings.scheduleByLevel[level];
+                document.getElementById(`level${level}EnabledInput`).value = String(Boolean(cfg.enabled));
+                document.getElementById(`level${level}FrequencyInput`).value = cfg.frequency || 'weekly';
+                document.getElementById(`level${level}DayInput`).value = cfg.day || 'Monday';
+                document.getElementById(`level${level}TimeInput`).value = cfg.time || '09:00';
+            });
+        }
+
+        function showWithdrawalFeedback(message) {
+            elements.withdrawalFeedback.textContent = message;
+            elements.withdrawalFeedback.classList.remove("hidden");
+            setTimeout(() => {
+                elements.withdrawalFeedback.classList.add("hidden");
+            }, 3200);
+        }
+
+        function getRigs() {
+            const stored = JSON.parse(localStorage.getItem(rigStorageKey));
+            return Array.isArray(stored) && stored.length ? stored : defaultRigs;
+        }
+
+        function saveRigs(rigs) {
+            localStorage.setItem(rigStorageKey, JSON.stringify(rigs));
+            // Sync to server for polling clients
+            fetch('http://localhost:3000/api/rigs', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ rigs })
+            }).catch(() => {
+              // Silent fail if server unavailable; changes remain in localStorage
+            });
+        }
+
+        function renderRigTable() {
+            const rigs = getRigs();
+            elements.rigTableBody.innerHTML = rigs.map((rig, index) => `
+                <tr>
+                    <td>${rig.name}</td>
+                    <td>Level ${rig.levelRequired || 1}</td>
+                    <td>$${Number(rig.subscription || 0).toFixed(2)}</td>
+                    <td>$${Number(rig.daily || 0).toFixed(2)}</td>
+                    <td>${rig.cycle} days</td>
+                    <td>$${Number(rig.total || 0).toFixed(2)}</td>
+                    <td><button type="button" data-index="${index}">Remove</button></td>
+                </tr>
+            `).join("");
+
+            elements.rigTableBody.querySelectorAll("button").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const index = Number(button.dataset.index);
+                    const rigs = getRigs();
+                    rigs.splice(index, 1);
+                    saveRigs(rigs);
+                    renderRigTable();
+                });
+            });
+        }
+
+        function showRigFeedback(message) {
+            elements.rigFeedback.textContent = message;
+            elements.rigFeedback.classList.remove("hidden");
+            setTimeout(() => {
+                elements.rigFeedback.classList.add("hidden");
+            }, 3200);
+        }
+
+        function addRig(event) {
+            event.preventDefault();
+            const name = document.getElementById("rigNameInput").value.trim();
+            const levelRequired = parseInt(document.getElementById("rigLevelInput").value, 10);
+            const subscription = parseFloat(document.getElementById("rigSubscriptionInput").value);
+            const cycle = parseInt(document.getElementById("rigCycleInput").value, 10);
+            const daily = parseFloat(document.getElementById("rigDailyRevenueInput").value);
+            const total = parseFloat(document.getElementById("rigTotalRevenueInput").value);
+
+            if (!name || isNaN(levelRequired) || isNaN(subscription) || isNaN(cycle) || isNaN(daily) || isNaN(total)) {
+                showRigFeedback("Enter valid rig values before adding.");
+                return;
+            }
+
+            const rigs = getRigs();
+            rigs.push({ name, subscription, daily, cycle, total, levelRequired });
+            saveRigs(rigs);
+            renderRigTable();
+            elements.rigForm.reset();
+            showRigFeedback("Rig added successfully. Refresh the dashboard to see it.");
+        }
+
+        function getTasks() {
+            const stored = JSON.parse(localStorage.getItem(taskStorageKey));
+            return Array.isArray(stored) && stored.length ? stored : defaultTasks;
+        }
+
+        function saveTasks(tasks) {
+            localStorage.setItem(taskStorageKey, JSON.stringify(tasks));
+            window.dispatchEvent(new CustomEvent('task-data-updated', { detail: tasks }));
+            fetch('http://localhost:3000/api/tasks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tasks })
+            }).catch(() => {});
+        }
+
+        function renderTaskTable() {
+            const tasks = getTasks();
+            elements.taskTableBody.innerHTML = tasks.map((task, index) => `
+                <tr>
+                    <td>${task.title}</td>
+                    <td>${task.platform}</td>
+                    <td>${task.type}</td>
+                    <td>${task.reward}¢</td>
+                    <td>${task.status}</td>
+                    <td><button type="button" data-task-index="${index}">Remove</button></td>
+                </tr>
+            `).join("");
+
+            elements.taskTableBody.querySelectorAll("button").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const index = Number(button.dataset.taskIndex);
+                    const tasks = getTasks();
+                    tasks.splice(index, 1);
+                    saveTasks(tasks);
+                    renderTaskTable();
+                });
+            });
+        }
+
+        function showTaskFeedback(message) {
+            elements.taskFeedback.textContent = message;
+            elements.taskFeedback.classList.remove("hidden");
+            setTimeout(() => {
+                elements.taskFeedback.classList.add("hidden");
+            }, 3200);
+        }
+
+        function updateTaskFieldsVisibility() {
+            const taskType = document.getElementById("taskTypeInput").value;
+            const videoField = document.getElementById("taskVideoUrlField");
+            const accountField = document.getElementById("taskAccountUrlField");
+            const requiresVideo = ["watch", "like", "comment"].includes(taskType);
+            const requiresAccount = taskType === "follow";
+
+            if (videoField) {
+                videoField.style.display = requiresVideo ? "flex" : "none";
+            }
+            if (accountField) {
+                accountField.style.display = requiresAccount ? "flex" : "none";
+            }
+        }
+
+        function addTask(event) {
+            event.preventDefault();
+            const title = document.getElementById("taskTitleInput").value.trim();
+            const platform = document.getElementById("taskPlatformInput").value;
+            const type = document.getElementById("taskTypeInput").value;
+            const reward = parseInt(document.getElementById("taskRewardInput").value, 10);
+            const status = "available";
+            const desc = document.getElementById("taskDescInput").value.trim();
+            const videoUrl = document.getElementById("taskVideoUrlInput").value.trim();
+            const accountUrl = document.getElementById("taskAccountUrlInput").value.trim();
+            const requiresVideo = ["watch", "like", "comment"].includes(type);
+            const requiresAccount = type === "follow";
+
+            if (!title || !platform || !type || Number.isNaN(reward)) {
+                showTaskFeedback("Title, platform, type, and reward are required.");
+                return;
+            }
+
+            if (requiresVideo && !videoUrl) {
+                showTaskFeedback("Video URL is required for watch, like, and comment tasks.");
+                return;
+            }
+
+            if (requiresAccount && !accountUrl) {
+                showTaskFeedback("Account / Channel URL is required for follow tasks.");
+                return;
+            }
+
+            try {
+                if (videoUrl) {
+                    const parsedVideo = new URL(videoUrl);
+                    if (!parsedVideo.protocol.startsWith("http")) {
+                        throw new Error("Invalid video URL");
+                    }
+                }
+                if (accountUrl) {
+                    const parsedAccount = new URL(accountUrl);
+                    if (!parsedAccount.protocol.startsWith("http")) {
+                        throw new Error("Invalid account URL");
+                    }
+                }
+            } catch (error) {
+                showTaskFeedback("Paste valid http:// or https:// links for the fields you entered.");
+                return;
+            }
+
+            const tasks = getTasks();
+            tasks.push({
+                id: Date.now(),
+                platform,
+                type,
+                title,
+                desc,
+                videoUrl: requiresVideo ? videoUrl : "",
+                accountUrl: requiresAccount ? accountUrl : "",
+                reward,
+                status
+            });
+            saveTasks(tasks);
+            renderTaskTable();
+            elements.taskForm.reset();
+            updateTaskFieldsVisibility();
+            showTaskFeedback("Task added successfully.");
+        }
+
+        function saveWithdrawalForm(event) {
+            event.preventDefault();
+            const settings = {
+                enabled: document.getElementById("withdrawalsEnabledInput").value === "true",
+                minimumWithdrawal: Number(document.getElementById("minimumWithdrawalInput").value) || 10,
+                dailyLimit: Number(document.getElementById("dailyWithdrawalLimitInput").value) || 1000,
+                processingWindowHours: Number(document.getElementById("processingHoursInput").value) || 24,
+                scheduleByLevel: {}
+            };
+
+            [1,2,3,4,5].forEach((level) => {
+                const frequency = document.getElementById(`level${level}FrequencyInput`).value;
+                settings.scheduleByLevel[level] = {
+                    enabled: document.getElementById(`level${level}EnabledInput`).value === "true",
+                    frequency: frequency === 'off' ? 'off' : frequency,
+                    day: document.getElementById(`level${level}DayInput`).value,
+                    time: document.getElementById(`level${level}TimeInput`).value
+                };
+            });
+
+            saveWithdrawalSettings(settings);
+            showWithdrawalFeedback("Withdrawal rules saved successfully.");
+        }
+
+        populateAdminForm(state);
+        populateWithdrawalForm(getWithdrawalSettings());
+        renderRigTable();
+        renderTaskTable();
+        updateTaskFieldsVisibility();
+        document.getElementById("taskTypeInput").addEventListener("change", updateTaskFieldsVisibility);
+
+        document.getElementById("resetWithdrawalsBtn").addEventListener("click", () => {
+            if (confirm("Reset withdrawal rules to default?")) {
+                saveWithdrawalSettings(defaultWithdrawalSettings);
+                populateWithdrawalForm(defaultWithdrawalSettings);
+                showWithdrawalFeedback("Withdrawal rules reset to defaults.");
+            }
+        });
+
+        elements.resetAdmin.addEventListener("click", () => {
+            if (confirm("Are you sure you want to reset to default values?")) {
+                saveConfig(defaultConfig);
+                populateAdminForm(defaultConfig);
+                showTaskFeedback("Social media settings reset to defaults.");
+            }
+        });
+
+        elements.withdrawalForm.addEventListener("submit", saveWithdrawalForm);
+        elements.rigForm.addEventListener("submit", addRig);
+        elements.taskForm.addEventListener("submit", addTask);
+    </script>
+</body>
+</html>
+
+
